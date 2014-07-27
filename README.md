@@ -6,4 +6,4 @@ For more information, check the [about page](http://www.weareyvr.ca/about/) on t
 
 ## Contributing
 
-Check the [SETUP file](blob/master/SETUP.md) for instructions on how to setup your development environment.
+Check the [SETUP file](SETUP.md) for instructions on how to setup your development environment.
