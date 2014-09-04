@@ -1,6 +1,6 @@
 <div class="row">
-  <%= render "shared/activity_stream" %>
-</div>
-<div class="row">
-  <%= paginate @activities %>
+  <div class="col-md-8 col-md-offset-2">
+    <%= render "shared/activity_stream" %>
+    <%= paginate @activities %>
+  </div>
 </div>
