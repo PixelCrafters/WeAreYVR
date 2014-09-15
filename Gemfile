@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # bootstrap
 gem 'bootstrap-sass', '~> 3.1.1'
 
+gem 'activerecord-session_store'
 gem 'friendly_id', '~> 5.0.0'
 gem 'searchkick'
 gem 'faraday'
