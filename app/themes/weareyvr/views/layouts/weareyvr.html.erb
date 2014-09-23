@@ -4,10 +4,6 @@
   <title><%= yield(:title) %>WeAreYVR</title>
   <%= stylesheet_link_tag    "weareyvr/all", media: "all" %>
   <script src="https://cdn.auth0.com/w2/auth0-widget-3.0.min.js"></script>
-  <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
-<script type="text/javascript">
-  FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=WeAreYVR+Feedback", "backgroundImage": "http://assets.freshdesk.com/widget/help-button.png", "widgetType": "popup", "buttonType": "image", "buttonText": "Feedback", "buttonColor": "white", "buttonBg": "#006063", "alignment": "3", "offset": "145px", "formHeight": "500px", "url": "http://support.weareyvr.ca"} );
-</script>
   <%= csrf_meta_tags %>
 </head>
   <body>
@@ -33,7 +29,7 @@
               <li<%= current_page?(organizations_path) ? ' class=active' : '' %>><%= link_to "Organizations",  search_organizations_path %></li>
               <li<%= current_page?(users_path) ? ' class=active' : '' %>><%= link_to "People", search_users_path %></li>
             </ul>
-            
+
             <div class="navbar-right">
               <%= render 'shared/auth_buttons' %>
               <% if not (current_page?(search_path)) %>
@@ -49,11 +45,12 @@
       </nav>
 
       <div class="container">
+
         <% if current_page?(root_url) %>
         <section class="row">
           <div class="col-md-8 text-content  col-sm-offset-2">
             <p class="lead">WeAreYVR is Vancouver's startup community hub. We aim to aggregate information and resources to help connect &amp; level up our tech startup community. <a href="/about">Read more about the project »</a></p>
-            <p class="lead">We're in <strong>beta</strong>! Please click the message icon and send us a note, or <a href="http://support.weareyvr.ca">browse the features on the support site »</a></p>
+            <p class="lead">We're in <strong>beta</strong>! Please click the message icon and send us a note, or <a href="http://weareyvr.freshdesk.com">browse the features on the support site »</a></p>
           </div>
         </section>
         <% end %>
@@ -62,11 +59,10 @@
           <%= render "shared/flash_message" %>
         </div>
         <div class="row">
-          <div class="col-sm-8 col-sm-offset-2">
-            <%= yield %>
-          </div>
+          <%= yield %>
         </div>
       </div><!-- /.container -->
+
     </div>
   </div>
   <footer>

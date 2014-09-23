@@ -79,6 +79,7 @@ a.edit{
 
 #tags{
   margin-bottom: 15px;
+  display: table-cell;
 }
 
 a.remove-tag{
@@ -162,8 +163,9 @@ footer{
 
 .time-ago{
   text-transform: uppercase;
-  color: #777;
-  font-size: 8px;
+  letter-spacing: 1px;
+  color: #92aaa7;
+  font-size: 12px;
   float: right;
   // Lining numerals - doesn't work in Safari yet, sadly
   -moz-font-feature-settings: "lnum" 1;
