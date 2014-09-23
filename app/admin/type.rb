@@ -1,6 +1,6 @@
 ActiveAdmin.register Type do
 
-  
+  menu priority: 5, :label => "Organizational Types"
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -18,6 +18,4 @@ ActiveAdmin.register Type do
 
   permit_params :name
 
-  menu :label => "Organizational Types"
-  
 end
