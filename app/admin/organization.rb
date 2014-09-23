@@ -32,6 +32,7 @@ ActiveAdmin.register Organization do
   end
 
   index do
+    selectable_column
     actions
     column :name, :min_width => "100px"
     column "Headline", :min_width => "250px" do |organization|
@@ -54,6 +55,9 @@ ActiveAdmin.register Organization do
     column :active
     column :founded
     column :hiring
+    column "Date Created" do |organization|
+      organization.created_at.strftime("%F")
+    end
   end
 
   show do
