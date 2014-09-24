@@ -16,7 +16,8 @@ ActiveAdmin.register User do
   
   permit_params :email, :name, :image, :email_verified, :email_digest, :startup_genome_slug, :startup_genome_image, :startup_genome_url, :claimed, :created_at, :updated_at
 
-  config.filters = false
+  filter :name
+  
   config.batch_actions = true
   batch_action :destroy
 
