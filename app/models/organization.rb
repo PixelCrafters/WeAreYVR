@@ -46,4 +46,20 @@ class Organization < ActiveRecord::Base
   def created_last_24_hours?
     created_at > Time.now - 24.hours
   end
+
+  def years_in_business
+    # Difference in years, less one if you have not had a birthday this year.
+    if founded.nil?
+      ""
+    else
+      now = DateTime.now
+      years = now.year - founded.year
+      years = years - 1 if (
+           founded.month >  now.month or 
+          (founded.month >= now.month and founded.day > now.day)
+      )
+      years
+    end
+  end
+
 end
