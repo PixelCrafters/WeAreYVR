@@ -1,10 +1,30 @@
-<h3>People</h3>
-<% @organization.organization_user_roles.each do |role| %>
-  <div class="person pull-left">
-  <%= image_tag role.user.image, height: "50", class: "pull-left" %>
-  <%= role.name %><br /><%= link_to role.user.name, user_path(role.user) %>
-  <% if user_is_current_user?(role.user) || organization_admin_user? %>
-    <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, remove_role_path(@organization.id, role.id), method: :delete, class: "remove-role remove-role-org-page pull-right" %>
+<section class="profile__people">
+  <h2>People</h2>
+  
+  <% @organization.organization_user_roles.each do |role| %>
+    <% if !role.user.nil? %>
+      <a href="<%= user_path(role.user) %>" class="entity-lg entity-lg--fixed <%= role.css_link_class %>">
+        <img src="<%= role.user.image %>" class="entity-lg__img">
+        <div class="entity-lg__txt">
+          <div class="entity-lg__name"><%= role.user.name %></div>
+          <div class="entity-lg__rel"><%= role.name %></div>
+        </div>
+      </a>
+      <% if user_is_current_user?(role.user) || organization_admin_user? %>
+        <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, remove_role_path(@organization.id, role.id), method: :delete, class: "remove-role remove-role-org-page pull-right" %>
+      <% end %>
+    <% end %>
   <% end %>
-  </div>
-<% end %>
+
+  
+  <% if @organization.hiring? %>
+    <a href="#" class="entity-lg wr-link-jobs">
+      <i class="glyphicon glyphicon-plus entity-lg__img"></i>
+      <div class="entity-lg__txt">
+        <div class="entity-lg__name">You?</div>
+        <div class="entity-lg__rel">We’re hiring</div>
+      </div>
+    </a>
+  <% end %>
+</section>
+
