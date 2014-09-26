@@ -1,4 +1,15 @@
 <% if @organization.hiring? %>
-  <span id="label-hiring" class="label label-success pull-left status">Hiring</span>
+  <section class="profile__jobs">
+    <a href="#" class="entity-lg wr-link-jobs">
+      <span class="wr-icon wr-icon-jobs entity-lg__img"></span>
+      <div class="entity-lg__txt">
+        <div class="entity-lg__name">We’re hiring</div>
+        <!-- TODO: if organization hiring_roles:
+        <div class="entity-lg__rel">Consulting, Advising</div> -->
+      </div>
+    </a>
+  </section>
 <% end %>
-<br /><br />
+
+
+

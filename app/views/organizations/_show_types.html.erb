@@ -1,13 +1,7 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div id="tags">
-      <div class="tag-list">
-        <% @organization.types.each do |type| %>
-          <span class="label label-primary tag">
-            <%= type.name %>
-          </span>
-        <% end %>
-      </div>
-    </div>
-  </div>
+<div class="profile__taxonomy">
+  <% @organization.types.each do |type| %>
+    <a href="<%= type.name %>" class="entity <%= type.css_link_class %>"><span class="wr-icon <%= type.css_icon_class %>"></span> <%= type.name %></a>
+  <% end %>
 </div>
+
+

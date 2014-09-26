@@ -58,7 +58,11 @@ class Organization < ActiveRecord::Base
            founded.month >  now.month or 
           (founded.month >= now.month and founded.day > now.day)
       )
-      years
+      if years < 1
+        "Less than a year"
+      else
+        years
+      end
     end
   end
 
