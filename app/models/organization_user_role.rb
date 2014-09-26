@@ -4,6 +4,10 @@ class OrganizationUserRole < ActiveRecord::Base
   belongs_to :user
 
   def name
-    role.name
+    if !role.nil?
+      role.name  
+    else
+      ""
+    end
   end
 end

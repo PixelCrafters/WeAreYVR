@@ -1,0 +1,5 @@
+<%= semantic_form_for [:admin, OrganizationUserRole.new(:organization => @organization)] do |form| %>
+  <%= form.input :user, :label => 'User', :as => :select, :collection => User.order(:name).all.map{|u| ["#{u.name}", u.id]} %>
+  <%= form.input :role, :label => 'Role', :as => :select, :collection => Role.order(:name).all.map{|r| ["#{r.name}", r.id]} %>
+  <%= form.submit :value => 'Submit' %>
+<% end %>

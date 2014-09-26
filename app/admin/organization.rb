@@ -1,6 +1,6 @@
-ActiveAdmin.register Organization do
+  ActiveAdmin.register Organization do
 
-  
+  menu priority: 2
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,13 +14,24 @@ ActiveAdmin.register Organization do
   #  permitted
   # end
 
-  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id
+  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles
 
   # AA doesn't handle has_many well, so don't use those
+  filter :name
   filter :types
   filter :active
   filter :claimed
   filter :hiring
+
+  action_item :only => :show do
+    link_to('Add User Role', add_user_role_admin_organization_path(organization))
+  end
+
+  member_action :add_user_role do
+    @organization = Organization.find(params[:id])
+    orgUserRole = OrganizationUserRole.create(:organization => @organization)
+    redirect_to edit_admin_organization_user_role_path(orgUserRole)
+  end
 
   # need to find by ID
   before_filter do
@@ -32,6 +43,7 @@ ActiveAdmin.register Organization do
   end
 
   index do
+    selectable_column
     actions
     column :name, :min_width => "100px"
     column "Headline", :min_width => "250px" do |organization|
@@ -54,6 +66,9 @@ ActiveAdmin.register Organization do
     column :active
     column :founded
     column :hiring
+    column "Date Created" do |organization|
+      organization.created_at.strftime("%F")
+    end
   end
 
   show do
@@ -69,9 +84,24 @@ ActiveAdmin.register Organization do
       row :founded
       row :claimed
       row :active
-      row :admin_id
-      
+      row "Admin" do
+        User.find(organization.admin_id)
+      end
       row :hiring
+      row "Roles" do
+        table_for organization.organization_user_roles do
+          column "Role" do |userrole|
+            userrole.role.name
+          end
+          column "User" do |userrole|
+            link_to userrole.user.name, [ :admin, userrole.user ]
+          end
+          column "Actions" do |userrole|
+            link_to("Edit", edit_admin_organization_user_role_path(userrole)) + ' ' +
+            link_to("Delete", admin_organization_user_role_path(userrole), method: :delete)
+          end
+        end
+      end
     end
   end
 
