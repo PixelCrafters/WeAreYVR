@@ -1,5 +1,17 @@
-<%= render "users/claim_header" %>
-<br />
-<%= render "users/edit_mode" %>
-<%= render "users/show_header" %>
-<%= render "users/show_organizations" %>
+<div class="row profile profile--user">
+  <div class="col-sm-4 profile__sidebar">
+    <%= render "users/show_header" %>
+    <%= render "users/show_jobs" %>
+    <%= render "users/show_organizations" %>
+    <%= render "users/claim_header" %>
+    <%= render "users/edit_mode" %>
+  </div>
+
+  <div class="col-sm-8 profile__content">
+    <%= render "users/bio" %>
+    <%= render "users/skills" %>
+    <%= render "users/why_vancouver" %>
+    <%= render "users/projects" %>
+    <%= render "users/local_faves" %>
+  </div>
+</div>
