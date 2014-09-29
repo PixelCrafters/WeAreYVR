@@ -1,7 +1,7 @@
 <section class="profile__header">
-  <%= render "organizations/image" %>
   <h1><%= @organization.name %></h1>
+  <%= render "organizations/image" %>
   <%= render "organizations/show_types" if @organization.types.any? %>
   <p class="profile__tagline"><%= @organization.headline %></p>
-  <%= render "organizations/show_profile_links" if @organization.profile_links.any? %>
+  <%= render "organizations/show_hiring" if @organization.hiring? %>
 </section>

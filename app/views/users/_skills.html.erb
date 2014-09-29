@@ -1,7 +1,8 @@
 <section class="profile__tags">
   <h2>Skills &amp; Interests</h2>
   <div class="tag-list">
-    <a class="entity entity-tag" href="/search?tags%5Bnames%5D%5B%5D=Blogger">Blogger</a>
-    <a class="entity entity-tag" href="/search?tags%5Bnames%5D%5B%5D=TeamVancouver">TeamVancouver</a>
+    <% @user.tags.each do |tag| %>
+      <a href="<% search_path(tags: {names: [tag.name]}) %>" class="entity wr-link-investor"><span class="wr-icon wr-icon-investor"></span><%= tag.name %></a>
+    <% end %>
   </div>
 </section>

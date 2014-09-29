@@ -14,7 +14,7 @@
   #  permitted
   # end
 
-  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles, :why_vancouver, :hiring_roles, :number_of_employees
+  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles, :why_vancouver, :hiring_roles, :number_of_employees, :neighbourhood
 
   # AA doesn't handle has_many well, so don't use those
   filter :name
@@ -82,6 +82,9 @@
         end
       end
       row :founded
+      row :why_vancouver 
+      row :number_of_employees 
+      row :hiring_roles 
       row :claimed
       row :active
       row "Admin" do
@@ -117,6 +120,7 @@
       f.input :why_vancouver 
       f.input :number_of_employees 
       f.input :hiring_roles 
+      f.input :neighbourhood 
       f.input :admin_id, :label => 'Claimed by', :as => :select, :collection => User.order(:name).all.map{|u| ["#{u.name}", u.id]}
     end
     f.actions

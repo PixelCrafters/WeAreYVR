@@ -1,4 +1,5 @@
 <section class="profile__header">
+  <h1><%= @user.name %></h1>
   <% if @user.startup_genome_image.present? %>
     <%= image_tag @user.startup_genome_image, height: "220" %>
   <% elsif @user.image.present? %>
@@ -6,9 +7,8 @@
   <% else %>
     <span class="glyphicon glyphicon-user"></span>
   <% end %>
-  <h1><%= @user.name %></h1>
   
-  <%= render "users/show_tags" %>
+  <%= render "users/show_roles" %>
   
   <p class="profile__tagline">Web entrepreneur. Vancouver. Startups. Carnivore. Infovore. Managing director at <a href="#" class="wr-link-incubator">Full Stack</a>.</p>
   <ul class="profile__links">
