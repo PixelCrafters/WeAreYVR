@@ -23,7 +23,7 @@ ActiveAdmin.register User do
 
   sidebar 'Organizations Claimed by this User', :only => :show do
     table_for Organization.joins(:users).where(:admin_id => user.id) do |t|
-      t.column("Org Name") { |organization| organization.name }
+      t.column("Org Name") { |organization| link_to organization.name, admin_organization_path(organization.id) }
     end
   end
 

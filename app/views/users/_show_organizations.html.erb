@@ -7,7 +7,7 @@
     <ul class="list-unstyled">
       <% @user.organizations.each do |organization| %>
         <li>
-          <a href="#" class="entity-lg wr-link-incubator">
+          <a href="<%= organization_path(organization) %>" class="entity-lg wr-link-incubator">
             <% if organization.image.present? %>
               <%= image_tag organization.image, class: "entity-lg__img" %>
             <% else %>
@@ -22,7 +22,7 @@
       <% end %>
       <% @user.organization_user_roles.each do |role| %>
         <li>
-          <a href="#" class="entity-lg wr-link-incubator">
+          <a href="<%= organization_path(role.organization) %>" class="entity-lg wr-link-incubator">
             <% if role.organization.image.present? %>
               <%= image_tag role.organization.image, class: "entity-lg__img" %>
             <% else %>

@@ -66,6 +66,17 @@ class Organization < ActiveRecord::Base
     end
   end
 
-  
+  def css_neighbourhood_icon_class
+    case neighbourhood
+    when "Downtown"
+      "wr-icon-downtown"
+    when "East Van"
+      "wr-icon-eastvan"
+    when "Gastown"
+      "wr-icon-gastown"
+    when "Mount Pleasant"
+      "wr-icon-mount-pleasant"
+    end
+  end
 
 end
