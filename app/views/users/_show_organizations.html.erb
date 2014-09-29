@@ -1,36 +1,41 @@
 <% if @user.organizations.any? || user_is_current_user? %>
-  <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="top-header">
-          <h3>Organizations</h3>
-          <% if user_is_current_user? %>
-            <span class="pull-right"><%= link_to "Create New Organization", new_organization_path, class: "right" %></span>
-          <% end %>
-        </div>
-        <% @user.organizations.each do |organization| %>
-          <div class="role pull-left">
+  <section class="profile__organizations">
+    <h2>Organizations</h2>
+    <% if user_is_current_user? %>
+              <span class="pull-right"><%= link_to "Create New Organization", new_organization_path, class: "right" %></span>
+            <% end %>
+    <ul class="list-unstyled">
+      <% @user.organizations.each do |organization| %>
+        <li>
+          <a href="#" class="entity-lg wr-link-incubator">
             <% if organization.image.present? %>
-              <%= image_tag organization.image, height: "50", class: "pull-left" %>
+              <%= image_tag organization.image, class: "entity-lg__img" %>
             <% else %>
-              <span class="wr-icon wr-icon-startup wr-icon-xl placeholder"></span>
+              <span class="wr-icon wr-icon-incubator entity-lg__img"></span>
             <% end %>
-            <%= link_to organization.name, organization_path(organization) %><br />
-            Admin
-          </div>  
-        <% end %>
-        <% @user.organization_user_roles.each do |role| %>
-          <div class="role pull-left">
+            <div class="entity-lg__txt">
+              <div class="entity-lg__name"><%= organization.name %></div>
+              <div class="entity-lg__rel">Admin</div>
+            </div>
+          </a>
+        </li>
+      <% end %>
+      <% @user.organization_user_roles.each do |role| %>
+        <li>
+          <a href="#" class="entity-lg wr-link-incubator">
             <% if role.organization.image.present? %>
-              <%= image_tag role.organization.image, height: "50", class: "pull-left" %>
+              <%= image_tag role.organization.image, class: "entity-lg__img" %>
             <% else %>
-              <span class="wr-icon wr-icon-startup wr-icon-xl placeholder"></span>
+              <span class="wr-icon wr-icon-incubator entity-lg__img"></span>
             <% end %>
-            <%= link_to role.organization.name, organization_path(role.organization) %><br />
-            <%= role.name %>      
-          </div>  
-        <% end %>
-      </div>
-    </div>
-  </div>
+            <div class="entity-lg__txt">
+              <div class="entity-lg__name"><%= role.organization.name %></div>
+              <div class="entity-lg__rel"><%= role.name %></div>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </section>
 <% end %>
+

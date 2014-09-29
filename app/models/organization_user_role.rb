@@ -10,4 +10,13 @@ class OrganizationUserRole < ActiveRecord::Base
       ""
     end
   end
+
+  def css_link_class
+    if !role.nil?
+      role.css_link_class
+    else
+      ""
+    end
+  end
+
 end

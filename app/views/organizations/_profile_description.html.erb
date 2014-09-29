@@ -1,4 +1,5 @@
-<h3>Business description</h3>
-<p class="chunk">
-  <%= @organization.description %>
-</p>
+<section class="profile__description">
+  <h2>Description</h2>
+  <div class="text-content"><p><%= @organization.headline %></p></div>
+  <%= render "organizations/show_tags" if @organization.tags.any? %> 
+</section>

@@ -14,7 +14,7 @@ ActiveAdmin.register User do
   #  permitted
   # end
   
-  permit_params :email, :name, :image, :email_verified, :email_digest, :startup_genome_slug, :startup_genome_image, :startup_genome_url, :claimed, :created_at, :updated_at
+  permit_params :email, :name, :image, :email_verified, :email_digest, :startup_genome_slug, :startup_genome_image, :startup_genome_url, :claimed, :created_at, :updated_at, :organization_user_roles, :bio, :why_vancouver
 
   filter :name
   

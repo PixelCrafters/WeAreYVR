@@ -7,18 +7,16 @@
 <div class="row">
   <%= render "organizations/edit_mode" %>
 </div>
-<div class="row">
-  <div class="col-sm-4">
-    <%= render "organizations/image" %>
+<div class="row profile profile--org">
+  <div class="col-sm-4 profile__sidebar">
+    <%= render "organizations/profile_header" %>
     <%= render "organizations/show_address" if @organization.main_address.present? %>
     <%= render "organizations/show_profile_links" if @organization.profile_links.any? %>
   </div>
-  <div class="col-sm-8">
-    <%= render "organizations/profile_header" %>
-    <%= render "organizations/show_hiring" if @organization.hiring? %>
-    <%= render "organizations/show_tags" if @organization.tags.any? %> 
-    <%= render "organizations/show_types" if @organization.types.any? %>
+  <div class="col-sm-8 profile__content">
     <%= render "organizations/profile_description" if @organization.description? %>
+    <%= render "organizations/quick_facts" %>
+    <%= render "organizations/why_vancouver" %>
     <%= render "organizations/show_users" if @organization.organization_user_roles.any? %>
   </div>
 </div>

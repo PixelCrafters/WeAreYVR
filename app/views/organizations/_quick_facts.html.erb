@@ -1,0 +1,24 @@
+<section class="profile__facts">
+  <h2>Quick Facts</h2>
+  <div class="row">
+    <dl class="quick-facts">
+      <div class="col-xs-4">
+        <dt>Employees</dt>
+        <dd class="quick-facts__number"><%= @organization.number_of_employees %></dd>
+      </div>
+      <% if @organization.years_in_business != "" %>
+      <div class="col-xs-4">
+        <dt>In business</dt>
+        <dd class="quick-facts__number"><%= @organization.years_in_business %> <small>years</small></dd>
+      </div>
+      <% end %>
+      <div class="col-xs-4">
+        <dt>Funding</dt>
+        TODO
+        <!-- <dd>Seed</dd>
+        <dd><span class="wr-icon wr-icon-series-a"></span> Series A</dd>
+        <dd><span class="wr-icon wr-icon-series-b"></span> Series B</dd> -->
+      </div>
+    </dl>
+  </div>
+</section>

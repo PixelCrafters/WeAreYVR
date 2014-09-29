@@ -1,0 +1,5 @@
+<div class="profile__taxonomy">
+  <% @user.organization_user_roles.map{|o| o.role.name}.uniq.each do |orguserrole| %>
+    <a href="<%= search_path(roles: {names: [orguserrole]}) %>" class="entity wr-link-investor"><span class="wr-icon wr-icon-investor"></span><%= orguserrole %></a>
+  <% end %>
+</div>
