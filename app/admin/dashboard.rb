@@ -28,7 +28,10 @@ ActiveAdmin.register_page "Dashboard" do
         
         column :active
         column :founded
-        column :hiring                     
+        column :hiring  
+        column "Date Created" do |organization|
+          organization.created_at.strftime("%F")
+        end                   
       end
     end
 
@@ -40,7 +43,10 @@ ActiveAdmin.register_page "Dashboard" do
         column "Tags" do |user|
           raw(user.tags.order('name ASC').map{ |tag| tag.name }.join(", "))
         end
-        column :claimed                  
+        column :claimed  
+        column "Date Created" do |user|
+          user.created_at.strftime("%F")
+        end                
       end
     end
       
