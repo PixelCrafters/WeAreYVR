@@ -14,7 +14,7 @@
   #  permitted
   # end
 
-  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles, :why_vancouver, :hiring_roles, :number_of_employees, :neighbourhood
+  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles, :why_vancouver, :hiring_roles, :number_of_employees, :neighbourhood, :profile_links
 
   # AA doesn't handle has_many well, so don't use those
   filter :name
@@ -27,10 +27,20 @@
     link_to('Add User Role', add_user_role_admin_organization_path(organization))
   end
 
+  action_item :only => :show do
+    link_to('Add Profile Link', add_profile_link_admin_organization_path(organization))
+  end
+
   member_action :add_user_role do
     @organization = Organization.find(params[:id])
     orgUserRole = OrganizationUserRole.create(:organization => @organization)
     redirect_to edit_admin_organization_user_role_path(orgUserRole)
+  end
+
+  member_action :add_profile_link do
+    @organization = Organization.find(params[:id])
+    profileLink = ProfileLink.create(:linkable => @organization)
+    redirect_to edit_admin_profile_link_path(profileLink)
   end
 
   # need to find by ID
@@ -87,6 +97,23 @@
       row :hiring_roles 
       row :claimed
       row :active
+      row "Profile Links" do
+        table_for organization.profile_links do
+          column "Name" do |profileLink|
+            profileLink.name
+          end
+          column "URL" do |profileLink|
+            profileLink.url
+          end
+          column "Image" do |profileLink|
+            profileLink.image
+          end
+          column "Actions" do |profileLink|
+            link_to("Edit", edit_admin_profile_link_path(profileLink)) + ' ' +
+            link_to("Delete", admin_profile_link_path(profileLink), method: :delete)
+          end
+        end
+      end
       row "Admin" do
         if !organization.admin_id.nil?
           User.find(organization.admin_id)  

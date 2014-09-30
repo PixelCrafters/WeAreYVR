@@ -9,7 +9,7 @@ class Organization < ActiveRecord::Base
 
   has_many :organization_user_roles
   has_many :addresses
-  has_many :profile_links
+  has_many :profile_links, :as => :linkable
   has_many :roles
   has_and_belongs_to_many :users
   has_and_belongs_to_many :types
