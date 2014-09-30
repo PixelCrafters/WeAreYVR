@@ -26,8 +26,8 @@
           </div>
           <nav class="collapse navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
-              <li<%= current_page?(organizations_path) ? ' class=active' : '' %>><%= link_to "Organizations",  search_organizations_path %></li>
-              <li<%= current_page?(users_path) ? ' class=active' : '' %>><%= link_to "People", search_users_path %></li>
+              <li<%= current_page?(search_organizations_path) ? ' class=active' : '' %>><%= link_to "Organizations",  search_organizations_path %></li>
+              <li<%= current_page?(search_users_path) ? ' class=active' : '' %>><%= link_to "People", search_users_path %></li>
             </ul>
 
             <div class="navbar-right">
@@ -44,12 +44,14 @@
         </div>
       </nav>
 
+      <% if current_page?(root_url) %>
       <header class="jumbotron wr-jumbotron wr-jumbotron-dark" style="background-image: url(http://brand.weareyvr.ca/img/7653923950_ef85676a03_h.jpg); background-position: bottom center;">
         <h1 class="jumbotron-heading">Opening channels for Vancouver’s startup community</h1>
         <div class="image-credit">
           Photo: <a href="https://www.flickr.com/photos/patdryburgh/7653923950">Pat Dryburgh</a>
         </div>
       </header>
+      <% end %>
 
       <div class="container">
 
