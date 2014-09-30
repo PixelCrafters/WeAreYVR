@@ -88,7 +88,9 @@
       row :claimed
       row :active
       row "Admin" do
-        User.find(organization.admin_id)
+        if !organization.admin_id.nil?
+          User.find(organization.admin_id)  
+        end
       end
       row :hiring
       row "Roles" do

@@ -1,8 +1,11 @@
-<section class="profile__tags">
-  <h2>Skills &amp; Interests</h2>
-  <div class="tag-list">
-    <% @user.tags.each do |tag| %>
-      <a href="<% search_path(tags: {names: [tag.name]}) %>" class="entity wr-link-investor"><span class="wr-icon wr-icon-investor"></span><%= tag.name %></a>
-    <% end %>
-  </div>
-</section>
+<% if !@user.tags.empty? %>
+  <section class="profile__tags">
+    <h2>Skills &amp; Interests</h2>
+    <div class="tag-list">
+      <% @user.tags.each do |tag| %>
+        <a href="<% search_path(tags: {names: [tag.name]}) %>" class="entity entity-tag"><%= tag.name %></a>
+      <% end %>
+    </div>
+  </section>
+<% end %>
+

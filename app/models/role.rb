@@ -28,4 +28,29 @@ class Role < ActiveRecord::Base
     end
   end
 
+  def css_icon_class 
+    case name
+    when "Employee"
+      "wr-icon-employee"
+    when "Founder"
+      "wr-icon-founder"
+    when "Freelancer/Contractor"
+      ""
+    when "Board Member"
+      ""
+    when "Investor"
+      "wr-icon-investor"
+    when "Service Provider"
+      ""
+    when "Consultant"
+      "wr-icon-advisor"
+    when "Advisor"
+      "wr-icon-advisor"
+    when "Client"
+      ""
+    when "User"
+      ""
+    end
+  end
+
 end
