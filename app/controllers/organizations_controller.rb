@@ -39,7 +39,7 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @profile_link = ProfileLink.new
+    @profile_link = ProfileLink.new(:linkable => @organization)
     @address = @organization.main_address || Address.new
   end
 
