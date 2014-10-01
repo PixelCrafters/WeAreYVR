@@ -7,7 +7,12 @@ class ProfileLinksController < ApplicationController
     else
       flash[:error] = "Your link was not created successfully."
     end
-    redirect_to edit_organization_path(profile_link.organization)
+    if profile_link.linkable_type == "Organization"
+      redirect_to edit_organization_path(profile_link.linkable)
+    elsif profile_link.linkable_type == "User"
+      redirect_to edit_user_path(profile_link.linkable)
+    end
+    
   end
 
   def destroy
@@ -16,12 +21,16 @@ class ProfileLinksController < ApplicationController
       ProfileLink::Activity::Store.call(profile_link, current_user, "delete")
       flash[:success] = "Your link was deleted successfully"
     end
-    redirect_to edit_organization_path(profile_link.organization)
+    if profile_link.linkable_type == "Organization"
+      redirect_to edit_organization_path(profile_link.linkable)
+    elsif profile_link.linkable_type == "User"
+      redirect_to edit_user_path(profile_link.linkable)
+    end
   end
 
   private
 
   def profile_link_params
-    params.require(:profile_link).permit(:url, :organization_id, :name)
+    params.require(:profile_link).permit(:url, :linkable_id, :linkable_name, :linkable_type, :name)
   end
 end

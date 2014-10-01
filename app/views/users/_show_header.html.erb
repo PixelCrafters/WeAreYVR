@@ -17,6 +17,8 @@
     <li><a href="#"><i class="fa fa-fw fa-linkedin"></i> LinkedIn</a></li>
   </ul> -->
 
+  <%= render "users/show_profile_links" %>
+
   <div class="user_details">
       <% if @user.email.nil? %>
         <%= render "users/email_modal" %>

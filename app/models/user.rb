@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :organization_user_roles
   has_many :user_auth_services
   has_and_belongs_to_many :organizations
+  has_many :profile_links, :as => :linkable
 
   def search_data
     {

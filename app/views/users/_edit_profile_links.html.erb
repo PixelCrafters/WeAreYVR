@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Links</h3>
+      <table class="table table-striped links-table">
+        <% @user.profile_links.each do |profile_link| %>
+          <tr>
+            <td><%= link_to profile_link.name, profile_link.url %></td>
+            <td><%= link_to '<span class="glyphicon glyphicon-remove"></span>
+    '.html_safe, profile_link_path(profile_link), method: :delete, class: "pull-right" %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><%= render "users/profile_links_form" %></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

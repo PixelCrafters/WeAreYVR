@@ -6,8 +6,8 @@
     <div class="form-group">
       <%= f.text_field :url, class: "form-control small-field", placeholder: "url" %>
     </div>
-    <%= f.hidden_field :linkable_id, :value => @organization.id %>
-    <%= f.hidden_field :linkable_type, :value => "Organization" %>
+    <%= f.hidden_field :linkable_id, :value => @user.id %>
+    <%= f.hidden_field :linkable_type, :value => "User" %>
     <%= f.submit "Add Link", class: "btn btn-sm btn-default" %>
   <% end %>
 </div>

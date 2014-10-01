@@ -1,13 +1,5 @@
 <ul class="profile__links">
-  <% if @organization.url.present? %>
-    <li><a href="<%= @organization.url %>"><i class="glyphicon glyphicon-globe"></i><%= @organization.url if @organization.url.present? %></a></li>
-  <% end %>
-
-  <% if @organization.url.present? %>
-    <li><a href="<%= @organization.url %>"><i class="fa fa-fw fa-pie-chart"></i>Startup Genome</a></li>
-  <% end %>
-
-  <% @organization.profile_links.each do |profile_link| %>
+  <% @user.profile_links.each do |profile_link| %>
     <% if profile_link.name == "Twitter" %>
       <li><a href="<%= profile_link.url %>"><i class="fa fa-fw fa-twitter"></i>@<%= profile_link.url.split('/').last %></a></li>
     <% elsif profile_link.name == "LinkedIn" %>
@@ -16,12 +8,6 @@
       <li><a href="<%= profile_link.url %>"><i class="glyphicon glyphicon-globe"></i><%= profile_link.name.blank? ? profile_link.url : profile_link.name %></a></li>
     <% end %>
   <% end %>
-
-  <!-- 
-  Twitter: fa-twitter
-  Startup Genome: fa-pie-chart
-  LinkedIn: fa-linkedin 
-  -->
 </ul>
 
 

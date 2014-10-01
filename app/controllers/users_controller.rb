@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @profile_link = ProfileLink.new(:linkable => @user)
   end
 
   def update
