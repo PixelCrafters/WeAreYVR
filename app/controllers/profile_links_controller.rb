@@ -31,6 +31,6 @@ class ProfileLinksController < ApplicationController
   private
 
   def profile_link_params
-    params.require(:profile_link).permit(:url, :linkable_id, :linkable_name, :linkable_type, :name, :cool)
+    params.require(:profile_link).permit(:url, :linkable_id, :linkable_name, :linkable_type, :name)
   end
 end

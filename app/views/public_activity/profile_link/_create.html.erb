@@ -15,7 +15,7 @@
       <% if activity.parameters[:linkable].present? %>
         <%= link_to activity.parameters[:linkable_name], polymorphic_url(activity.parameters[:linkable]) %>
       <% else %>
-        activity.parameters[:linkable]
+        <%= link_to activity.parameters[:linkable_name], send(activity.parameters[:linkable_type].downcase + '_path', activity.parameters[:linkable_id]) %>
       <% end %>
       (since removed)
     <% end %>

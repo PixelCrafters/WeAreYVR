@@ -16,10 +16,9 @@ class ProfileLink::Activity::Store
         parameters: {
           name: profile_link.name,
           url: profile_link.url,
-          linkable_name: "aa yeah",
+          linkable_name: profile_link.linkable.name,
           linkable_type: profile_link.linkable_type,
-          linkable: profile_link.linkable,
-          cool: profile_link
+          linkable_id: profile_link.linkable_id,
         }
       )
   end
