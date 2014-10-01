@@ -4,6 +4,6 @@
 
     deleted link <%= link_to activity.parameters[:name], activity.parameters[:url] %>
 
-    from <%= link_to activity.parameters[:org_name], organization_path(:org_name) %>
+    from <%= link_to activity.parameters[:org_name], polymorphic_url(activity.parameters[:linkable]) %>
   </div>
 </div>

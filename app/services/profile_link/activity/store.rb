@@ -15,9 +15,11 @@ class ProfileLink::Activity::Store
         owner: current_user, 
         parameters: {
           name: profile_link.name,
-          url: profile_link.url, 
-          org_name: profile_link.organization.name,
-          org_id: profile_link.organization.id
+          url: profile_link.url,
+          linkable_name: "aa yeah",
+          linkable_type: profile_link.linkable_type,
+          linkable: profile_link.linkable,
+          cool: profile_link
         }
       )
   end
