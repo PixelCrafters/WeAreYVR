@@ -4,7 +4,7 @@ added link
   <%= link_to activity.trackable.name, activity.trackable.url, class: "entity entity-link" %>  
   to 
     <% if activity.parameters[:linkable].present? %>
-      <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], polymorphic_path(activity.parameters[:linkable]), class: "entity entity-org wr-link-startup" %>
+      <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], '#', class: "entity entity-org wr-link-startup" %>
     <% else %>
       <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], '#', class: "entity entity-org wr-link-startup" %>
     <% end %>
