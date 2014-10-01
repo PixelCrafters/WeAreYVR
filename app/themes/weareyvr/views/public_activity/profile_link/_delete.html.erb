@@ -4,8 +4,8 @@ deleted link  <%= link_to  activity.parameters[:name],  activity.parameters[:url
 
 from 
 <% if activity.parameters[:linkable].present? %>
-  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], polymorphic_path(activity.parameters[:linkable]), class: "entity entity-org wr-link-startup" %>
+  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], '#', class: "entity entity-org wr-link-startup" %>
 <% else %>
-  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], send(activity.parameters[:linkable_type].downcase + '_path', activity.parameters[:linkable_id]), class: "entity entity-org wr-link-startup" %>
+  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], '#', class: "entity entity-org wr-link-startup" %>
 <% end %>
 

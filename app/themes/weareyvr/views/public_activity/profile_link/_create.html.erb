@@ -11,6 +11,6 @@ added link
 <% elsif activity.parameters[:linkable_id].present? %>
   <%= link_to activity.parameters[:name], activity.parameters[:url], class: "entity entity-link" %>
   to
-  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], send(activity.parameters[:linkable_type].downcase + '_path', activity.parameters[:linkable_id]), class: "entity entity-org wr-link-startup" %>
+  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], '#', class: "entity entity-org wr-link-startup" %>
    (since removed)
 <% end %>
