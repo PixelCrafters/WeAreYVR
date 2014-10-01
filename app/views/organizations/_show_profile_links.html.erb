@@ -9,11 +9,11 @@
 
   <% @organization.profile_links.each do |profile_link| %>
     <% if profile_link.name == "Twitter" %>
-      <li><a href="<%= profile_link.url %>"><i class="fa fa-fw fa-twitter"></i><%= profile_link.name %></a></li>
+      <li><a href="<%= profile_link.url %>"><i class="fa fa-fw fa-twitter"></i>@<%= profile_link.url.split('/').last %></a></li>
     <% elsif profile_link.name == "LinkedIn" %>
-      <li><a href="<%= profile_link.url %>"><i class="fa fa-fw fa-linkedin"></i><%= profile_link.name %></a></li>
+      <li><a href="<%= profile_link.url %>"><i class="fa fa-fw fa-linkedin"></i>LinkedIn</a></li>
     <% else %>
-      <li><a href="<%= profile_link.url %>"><i class="glyphicon glyphicon-globe"></i><%= profile_link.name %></a></li>
+      <li><a href="<%= profile_link.url %>"><i class="glyphicon glyphicon-globe"></i><%= profile_link.name.blank? ? profile_link.url : profile_link.name %></a></li>
     <% end %>
   <% end %>
 
