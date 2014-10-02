@@ -1,16 +1,23 @@
+<% if activity.parameters[:linkable_type].downcase == 'user' %>
+  <% @linkable_css_link_class = "wr-link-founder" %>
+  <% @linkable_css_icon_class = "wr-icon-founder-av" %>
+<% else %>
+  <% @linkable_css_link_class = "wr-link-startup" %>
+  <% @linkable_css_icon_class = "wr-icon-startup" %>
+<% end %>
 <%= link_to "<i class='wr-icon wr-icon-founder-av'></i>".html_safe + activity.owner.name, user_path(activity.owner), class: "entity entity-user wr-link-founder"  %>
 added link 
 <% if activity.trackable %>
   <%= link_to activity.trackable.name, activity.trackable.url, class: "entity entity-link" %>  
-  to 
+  to
     <% if activity.parameters[:linkable].present? %>
-      <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], polymorphic_path(activity.parameters[:linkable]), class: "entity entity-org wr-link-startup" %>
-    <% else %>
-      <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], '#', class: "entity entity-org wr-link-startup" %>
+      <%= link_to "<i class='wr-icon #{@linkable_css_icon_class}'></i>".html_safe + activity.parameters[:linkable_name], polymorphic_path(activity.parameters[:linkable]), class: "entity entity-org wr-link-startup" %>
+    <% elsif activity.parameters[:linkable_id].present? %>
+      <%= link_to "<i class='wr-icon #{@linkable_css_icon_class}'></i>".html_safe + activity.parameters[:linkable_name], send(activity.parameters[:linkable_type].downcase + '_path', activity.parameters[:linkable_id]), class: "entity entity-org #{@linkable_css_link_class}" %>
     <% end %>
 <% elsif activity.parameters[:linkable_id].present? %>
   <%= link_to activity.parameters[:name], activity.parameters[:url], class: "entity entity-link" %>
   to
-  <%= link_to "<i class='wr-icon wr-icon-user'></i>".html_safe + activity.parameters[:linkable_name], send(activity.parameters[:linkable_type].downcase + '_path', activity.parameters[:linkable_id]), class: "entity entity-org wr-link-startup" %>
+  <%= link_to "<i class='wr-icon wr-icon-startup'></i>".html_safe + activity.parameters[:linkable_name], send(activity.parameters[:linkable_type].downcase + '_path', activity.parameters[:linkable_id]), class: "entity entity-org #{@linkable_css_link_class}" %>
    (since removed)
 <% end %>
