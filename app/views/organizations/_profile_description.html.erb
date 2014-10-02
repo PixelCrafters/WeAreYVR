@@ -1,7 +1,7 @@
 <section class="profile__description">
   <% if @organization.headline.present? %>
     <h2>Description</h2>
-    <div class="text-content"><p><%= @organization.headline %></p></div>
+    <div class="text-content"><p><%= @organization.description %></p></div>
   <% end %>  
   <%= render "organizations/show_tags" if @organization.tags.any? %> 
 </section>

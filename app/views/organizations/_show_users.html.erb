@@ -18,7 +18,7 @@
 
   
   <% if @organization.hiring? %>
-    <a href="#" class="entity-lg wr-link-jobs">
+    <a href="<%= @organization.hiring_url %>" class="entity-lg wr-link-jobs">
       <i class="glyphicon glyphicon-plus entity-lg__img"></i>
       <div class="entity-lg__txt">
         <div class="entity-lg__name">You?</div>
