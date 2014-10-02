@@ -1,0 +1,16 @@
+<%= form_for @organization, html: {role: "form"} do |f| %>
+  <div class="form-group">
+    <%= f.label :hiring %>
+    <%= f.check_box :hiring, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :hiring_roles %>
+    <%= f.text_field "hiring_roles", class: "form-control", :rows => "10" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :hiring_url %>
+    <%= f.text_field "hiring_url", class: "form-control", :rows => "10" %>
+  </div>
+  <%= f.submit "Save Info", class: "btn btn-primary" %>
+<% end %>
+

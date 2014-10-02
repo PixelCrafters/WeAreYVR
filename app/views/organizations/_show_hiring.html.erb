@@ -1,6 +1,6 @@
 <% if @organization.hiring? %>
   <section class="profile__jobs">
-    <a href="#" class="entity-lg wr-link-jobs">
+    <a href="<%= @organization.hiring_url %>" class="entity-lg wr-link-jobs">
       <span class="wr-icon wr-icon-jobs entity-lg__img"></span>
       <div class="entity-lg__txt">
         <div class="entity-lg__name">We’re hiring</div>
