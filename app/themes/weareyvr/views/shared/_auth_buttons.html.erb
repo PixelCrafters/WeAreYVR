@@ -9,10 +9,11 @@
       });
       
     </script>
-    <button onclick="widget.signin({ scope: 'openid profile' })" class="btn btn-primary" >Login</button>
+    <button onclick="widget.signin({ scope: 'openid profile' })" class="btn btn-primary" style="background-color: #10988b; border-color: #0e8176; color: white;">Sign up</button>
+    <button onclick="widget.signin({ scope: 'openid profile' })" class="btn btn-primary">Sign in</button>
   <% end %>
   <% if current_user %>
     <%= link_to image_tag(current_user.image, height: '30'), user_path(current_user) %>
-    <%= link_to "Logout", unset_session_path, class: "btn btn-primary" %>
+    <%= link_to "Sign out", unset_session_path, class: "btn btn-primary" %>
   <% end %>
 </div>
