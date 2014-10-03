@@ -1,5 +1,9 @@
-.jumbotron {
-  background-color: #FFF !important;
+.jumbotron.wr-jumbotron {
+  background-image: url(http://brand.weareyvr.ca/img/7653923950_ef85676a03_h.jpg); background-position: bottom center; padding: 30px 0;
+
+}
+.jumbotron.wr-jumbotron h1.jumbotron-heading {
+  margin: 0 auto; font-size: 50px; letter-spacing: 7px;
 }
 
 .top-buffer { 
@@ -51,6 +55,12 @@ div.submit{
   padding-bottom: 10px;
   margin-bottom: 30px;
   border-bottom: 1px dotted #232c2b;
+}
+
+.profile__header, .header-image {
+  img {
+    max-width: 200px;
+  }
 }
 
 /*** Organization Styles ***/
@@ -154,7 +164,6 @@ html, body {
 }
 
 footer{
-  height: 100px;
   box-shadow: inset 0 1px 2px rgba(146, 170, 167, 0.5);
   border-top: 1px solid #ccc;
 }

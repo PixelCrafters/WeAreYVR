@@ -1,8 +1,8 @@
 <div class="header-image">
   <% if @organization.image.present? %>
-    <%= image_tag @organization.image, style: 'max-width: 200px;' %>
+    <%= image_tag @organization.image %>
   <% elsif @organization.image.present? %>
-    <%= image_tag @organization.image, style: 'max-width: 200px;', class: "pull-left" %>
+    <%= image_tag @organization.image, class: "pull-left" %>
   <% else %>
     <span class="glyphicon glyphicon-user"></span>
   <% end %>
