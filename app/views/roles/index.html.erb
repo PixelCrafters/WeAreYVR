@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h3>ROLES</h3>
+    <% if @roles.present? %>
+      <div id="roles">
+        <% @roles.each do |role| %>
+          <p class="search-result">
+            <%= link_to role.name, role_path(role) %>
+          </p>
+          <br />
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>  
+<div class="row">
+  <div class="col-sm-11">
+  <%= paginate @roles %>
+  </div>
+</div>

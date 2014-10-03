@@ -1,7 +1,7 @@
 class Role < ActiveRecord::Base
   has_many :organization_user_roles
-  has_many :organizations
-  has_many :users
+  has_many :organizations, :through => :organization_user_roles
+  has_many :users, :through => :organization_user_roles
 
   def css_link_class 
     case name

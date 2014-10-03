@@ -38,4 +38,5 @@ class SearchController < ApplicationController
     params[:types][:ids].shift if params[:types][:ids].first.empty?
     params[:types] = params[:types][:ids].empty? ? nil : params[:types][:ids]
   end
+
 end

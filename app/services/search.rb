@@ -1,7 +1,7 @@
 class Search
   include Service
 
-  attr_reader :params, :search_type, :query, :tags, :types
+  attr_reader :params, :search_type, :query, :tags, :types, :roles
 
   def initialize(params, search_type=nil)
     @params = params
@@ -36,15 +36,17 @@ class Search
   end
 
   def conditions
+    query = {}
     order = { order: { updated_at: :desc } }
-    if tags && types
-      {where: {tag_names: {all: tags}, type_ids: {all: types}}}.merge order
-    elsif tags
-      {where: {tag_names: {all: tags}}}.merge order
-    elsif types
-      {where: {type_ids: {all: types}}}.merge order
-    else
-      {}.merge order
+    
+    if tags
+      query.merge!(tag_names: {all: tags})
     end
+    
+    if types
+      query.merge!(type_ids: {all: types})
+    end
+
+    return {where: query}.merge order
   end
 end
