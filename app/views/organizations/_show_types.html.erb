@@ -1,6 +1,6 @@
 <div class="profile__taxonomy">
   <% @organization.types.each do |type| %>
-    <a href="<%= type.name %>" class="entity <%= type.css_link_class %>"><span class="wr-icon <%= type.css_icon_class %>"></span> <%= type.name %></a>
+    <a href="<%= search_organizations_path(types: {ids: [type.id]}) %>" class="entity <%= type.css_link_class %>"><span class="wr-icon <%= type.css_icon_class %>"></span> <%= type.name %></a>
   <% end %>
 </div>
 

@@ -1,5 +1,5 @@
 <div class="profile__taxonomy">
   <% @user.organization_user_roles.map{|o| o.role}.uniq.each do |role| %>
-    <a href="<%= search_path(roles: {names: [role.name]}) %>" class="entity <%= role.css_link_class %>"><% if !role.css_icon_class.blank? %><span class="wr-icon <%= role.css_icon_class %>"></span><% end %><%= role.name %></a>
+    <a href="<%= role_path(role) %>" class="entity <%= role.css_link_class %>"><% if !role.css_icon_class.blank? %><span class="wr-icon <%= role.css_icon_class %>"></span><% end %><%= role.name %></a>
   <% end %>
 </div>
