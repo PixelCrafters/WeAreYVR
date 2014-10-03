@@ -13,24 +13,24 @@
       <div class="col-sm-4">
         <%= form_for current_user, html: {role: "form", class: "inline-form"} do |f| %>
           <div class="form-group">
-            <%= f.label :name %>:
+            <%= f.label :name %>
             <%= f.text_field "name", class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= f.label :email %>:
-            <%= f.text_field "email", class: "form-control" %>
+            <%= f.label :email %>
+            <%= f.text_field "email", class: "form-control", placeholder: 'email@example.com' %>
           </div>
           <div class="form-group">
-            <%= f.label :bio %>:
-            <%= f.text_field "bio", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :short_bio %>:
+            <%= f.label :short_bio %>
             <%= f.text_field "short_bio", class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= f.label :why_vancouver %>:
-            <%= f.text_field "why_vancouver", class: "form-control" %>
+            <%= f.label :bio %>
+            <%= f.text_area "bio", class: "form-control", rows: 5 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :why_vancouver, 'Why Vancouver?' %>
+            <%= f.text_area "why_vancouver", class: "form-control", rows: 5 %>
           </div>
           <%= f.submit "Save Changes", class: "btn btn-default btn-sm" %>
         <% end %>
