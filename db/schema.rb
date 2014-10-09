@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(version: 20141027171435) do
     t.string   "bio"
     t.string   "why_vancouver"
     t.string   "short_bio"
+    t.string   "avatar"
   end
 
 end
