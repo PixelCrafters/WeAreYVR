@@ -30,6 +30,7 @@
             <ul class="nav navbar-nav">
               <li<%= current_page?(search_organizations_path) ? ' class=active' : '' %>><%= link_to "Organizations",  search_organizations_path %></li>
               <li<%= current_page?(search_users_path) ? ' class=active' : '' %>><%= link_to "People", search_users_path %></li>
+              <li<%= current_page?(jobs_path) ? ' class=active' : '' %>><%= link_to "Jobs", jobs_path %></li>
             </ul>
 
             <div class="navbar-right">

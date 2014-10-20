@@ -13,6 +13,7 @@ class Organization < ActiveRecord::Base
   has_many :roles
   has_and_belongs_to_many :users
   has_and_belongs_to_many :types
+  has_many :jobs
 
   def admin_id=(value)
     if !admin_id.nil?
