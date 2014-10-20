@@ -10,11 +10,30 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.label :title %>
   <%= f.text_field :title, class: "form-control" %>
+  <%= f.label :description %>
   <%= f.text_field :description, class: "form-control" %>
-
+  <%= f.label :level %>
+  <%= f.select(:level, [['Junior', 'Junior'],
+                                  ['Intermediate', 'Intermediate'],
+                                  ['Senior', 'Senior'],
+                                  ['Executive', 'Executive'],
+                                  ['All', 'All']
+                                 ],{ :prompt => "Please select"},
+                                   { :multiple => false, :size => 5, :class => 'form-control' }
+                                ) %>
+  <%= f.label :job_type %>
+  <%= f.text_field :job_type, class: "form-control" %>
+  <%= f.label :source %>
+  <%= f.text_field :source, class: "form-control" %>
+  <%= f.label :link %>
+  <%= f.text_field :link, class: "form-control" %>
+  <%= f.label 'Organization' %>
+  <%= f.collection_select(:organization_id, Organization.all.sort_by{ |org| org.name}, :id, :name, {:include_blank => true}, class: "form-control") %>
+  <%= f.label :sponsored %>
+  <%= f.check_box :sponsored, class: "form-control" %>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Update", class: "btn btn-default" %>
   </div>
 <% end %>

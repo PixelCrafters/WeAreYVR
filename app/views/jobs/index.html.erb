@@ -1,24 +1,92 @@
-<h1>Listing jobs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.title %></td>
-        <td><%= job.description %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1>Jobs</h1>
+<% if !@jobs.sponsored.empty? %>
+  <% @jobs.sponsored.each do |sponsored_job| %>
+    <div class="row job-listing job-listing--premium">
+      <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
+        <%= link_to sponsored_job do %>
+          <!-- <div class="job-listing__new">New</div> -->
+          <h3><%= sponsored_job.title %></h3>
+          <p><%= sponsored_job.description %></p>
+        <% end %>
+        <div class="job-listing__via">
+          via <%= sponsored_job.source %>
+        </div>
+      </div>
+      <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
+        <%= link_to organization_path(sponsored_job.organization), :class => "job-listing__org__logo" do %>
+          <% if sponsored_job.organization.image.present? %>
+            <%= image_tag sponsored_job.organization.image %>
+          <% else %>
+            <%= sponsored_job.organization.name %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="job-listing__meta col-md-6 col-xs-12">
+        <div class="row">
+          <div class="job-listing__location col-xs-3">
+            <%= sponsored_job.organization.neighbourhood %>
+          </div>
+          <div class="job-listing__level col-xs-3">
+            <%= sponsored_job.level %>
+          </div>
+          <div class="job-listing__type col-xs-3">
+            <%= sponsored_job.job_type %>
+          </div>
+          <div class="job-listing__posted col-xs-3">
+            <%= time_ago_in_words(sponsored_job.created_at) %> ago
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="row job-board__sponsors">
+    <div class="col-xs-12">
+      <h3>Sponsored by</h3>
+      <% @jobs.sponsored.each do |sponsored_job| %>
+        <% if sponsored_job.organization.image.present? %>
+          <%= image_tag sponsored_job.organization.image %>
+        <% else %>
+          <%= sponsored_job.organization.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<% @jobs.nonsponsored.each do |job| %>
+  <div class="row job-listing job-listing--premium">
+    <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
+      <%= link_to job do %>
+        <!-- <div class="job-listing__new">New</div> -->
+        <h3><%= job.title %></h3>
+        <p><%= job.description %></p>
+      <% end %>
+      <% if job.source.present? %>
+        <div class="job-listing__via">
+          via <%= job.source %>
+        </div>
+      <% end %>
+    </div>
+    <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
+      <%= link_to job.organization.name, organization_path(job.organization), :class => "job-listing__org__logo" %>
+    </div>
+    <div class="job-listing__meta col-md-6 col-xs-12">
+      <div class="row">
+        <div class="job-listing__location col-xs-3">
+          <%= job.organization.neighbourhood %>
+        </div>
+        <div class="job-listing__level col-xs-3">
+          <%= job.level %>
+        </div>
+        <div class="job-listing__type col-xs-3">
+          <%= job.job_type %>
+        </div>
+        <div class="job-listing__posted col-xs-3">
+          <%= time_ago_in_words(job.created_at) %> ago
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
 <br>
 
