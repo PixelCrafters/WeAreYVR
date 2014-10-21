@@ -1,3 +1,4 @@
+<div class="specimen">
 <%= form_for(@job) do |f| %>
   <% if @job.errors.any? %>
     <div id="error_explanation">
@@ -10,30 +11,52 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :title %>
-  <%= f.text_field :title, class: "form-control" %>
-  <%= f.label :description %>
-  <%= f.text_field :description, class: "form-control" %>
-  <%= f.label :level %>
-  <%= f.select(:level, [['Junior', 'Junior'],
-                                  ['Intermediate', 'Intermediate'],
-                                  ['Senior', 'Senior'],
-                                  ['Executive', 'Executive'],
-                                  ['All', 'All']
-                                 ],{ :prompt => "Please select"},
-                                   { :multiple => false, :size => 5, :class => 'form-control' }
-                                ) %>
-  <%= f.label :job_type %>
-  <%= f.text_field :job_type, class: "form-control" %>
-  <%= f.label :source %>
-  <%= f.text_field :source, class: "form-control" %>
-  <%= f.label :link %>
-  <%= f.text_field :link, class: "form-control" %>
-  <%= f.label 'Organization' %>
-  <%= f.collection_select(:organization_id, Organization.all.sort_by{ |org| org.name}, :id, :name, {:include_blank => true}, class: "form-control") %>
-  <%= f.label :sponsored %>
-  <%= f.check_box :sponsored, class: "form-control" %>
+  <div class="form-group">
+    <%= f.label :title %> 
+    <p class="small">e.g. Senior Widget Wrangler, Cloud Engineer, Marketing Ninja</p>
+    <%= f.text_field :title, :required => true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :level %>
+    <p class="small">What level of experience are you looking for?</p>
+    <%= f.select(:level, [['Junior', 'Junior'],
+                                    ['Intermediate', 'Intermediate'],
+                                    ['Senior', 'Senior'],
+                                    ['Executive', 'Executive'],
+                                    ['All', 'All']
+                                   ],{ },
+                                     { :multiple => false, :size => 5, :required => true, :class => 'form-control' }
+                                  ) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :job_type %>
+    <p class="small">Broadly speaking, what is the primary area of your company that this job is in?</p>
+    <%= f.text_field :job_type, :required => true, class: "form-control" %>
+    </p>
+  </div>
+  <div class="form-group">
+    <%= f.label :source %>
+    <%= f.text_field :source, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :link %>
+    <p class="small">This should be a direct link to this job, not to your careers page</p>
+    <%= f.text_field :link, :required => true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Organization' %>
+    <%= f.collection_select(:organization_id, current_user.organizations.sort_by{ |org| org.name}, :id, :name, {:include_blank => true}, :required => true, class: "form-control") %>
+  </div>
   <div class="actions">
-    <%= submit_tag "Update", class: "btn btn-default" %>
+    <% if f.object.new_record? %>
+      <%= submit_tag "Submit", class: "btn btn-default" %>
+    <% else %>
+      <%= submit_tag "Update", class: "btn btn-default" %>
+    <% end %>
   </div>
 <% end %>
+</div>

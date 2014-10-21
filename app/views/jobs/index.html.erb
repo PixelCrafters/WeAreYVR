@@ -1,4 +1,21 @@
-<h1>Jobs</h1>
+<header class="row job-board__header">
+  <div class="col-xs-12">
+    <h2>
+      <i class="wr-icon wr-icon-jobs"></i>Jobs <small><%= @jobs.count %> jobs</small>
+    </h2>
+    <%= link_to new_job_path, :class => "btn btn-primary pull-right" do %>
+      <i class="fa fa-fw fa-plus"></i> Add a job
+    <% end %>
+  </div>
+</header>
+<div class="row job-board__presented">
+  <div class="col-sm-6 col-sm-offset-3">
+    <a href="http://www.startupweekvancouver.ca/"><img src="http://d9hhrg4mnvzow.cloudfront.net/www.startupweekvancouver.ca/d04e9e2b-logo.png" alt="Startup Week Vancouver"></a>
+    <h3 class="job-board__presented__by"><span>Presented by</span> <a href="http://www.startupweekvancouver.ca/">Startup Week Vancouver</a></h3>
+    <p>A week-long series of events around the city to celebrate our tech community and startup ecosystem. #startupweekvan</p>
+  </div>
+</div>
+
 <% if !@jobs.sponsored.empty? %>
   <% @jobs.sponsored.each do |sponsored_job| %>
     <div class="row job-listing job-listing--premium">
@@ -15,7 +32,7 @@
       <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
         <%= link_to organization_path(sponsored_job.organization), :class => "job-listing__org__logo" do %>
           <% if sponsored_job.organization.image.present? %>
-            <%= image_tag sponsored_job.organization.image %>
+            <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
           <% else %>
             <%= sponsored_job.organization.name %>
           <% end %>
@@ -23,9 +40,14 @@
       </div>
       <div class="job-listing__meta col-md-6 col-xs-12">
         <div class="row">
-          <div class="job-listing__location col-xs-3">
-            <%= sponsored_job.organization.neighbourhood %>
-          </div>
+          <% if sponsored_job.organization.neighbourhood.present? %>
+            <div class="job-listing__location col-xs-3">
+              <%= sponsored_job.organization.neighbourhood %>
+            </div>
+          <% else %>
+            <div class="col-xs-3">
+            </div>
+          <% end %>
           <div class="job-listing__level col-xs-3">
             <%= sponsored_job.level %>
           </div>
@@ -44,7 +66,7 @@
       <h3>Sponsored by</h3>
       <% @jobs.sponsored.each do |sponsored_job| %>
         <% if sponsored_job.organization.image.present? %>
-          <%= image_tag sponsored_job.organization.image %>
+          <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
         <% else %>
           <%= sponsored_job.organization.name %>
         <% end %>
@@ -71,9 +93,14 @@
     </div>
     <div class="job-listing__meta col-md-6 col-xs-12">
       <div class="row">
-        <div class="job-listing__location col-xs-3">
-          <%= job.organization.neighbourhood %>
-        </div>
+        <% if job.organization.neighbourhood.present? %>
+          <div class="job-listing__location col-xs-3">
+            <%= job.organization.neighbourhood %>
+          </div>
+        <% else %>
+          <div class="col-xs-3">
+          </div>
+        <% end %>
         <div class="job-listing__level col-xs-3">
           <%= job.level %>
         </div>
@@ -89,5 +116,3 @@
   <% end %>
 
 <br>
-
-<%= link_to 'New Job', new_job_path %>

@@ -14,6 +14,8 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
+    @current_user = current_user
+    puts @current_user.inspect
     @job = Job.new
   end
 
@@ -69,6 +71,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description, :level, :type, :source, :link, :organization_id, :sponsored)
+      params.require(:job).permit(:title, :description, :level, :job_type, :source, :link, :organization_id)
     end
 end
