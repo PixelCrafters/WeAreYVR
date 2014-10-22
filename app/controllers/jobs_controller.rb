@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_filter :deny_access, :unless => :org_admin?, only: [:edit, :destroy]
 
   # GET /jobs
   # GET /jobs.json
@@ -10,12 +11,13 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    @current_user = current_user
+    render 'show'
   end
 
   # GET /jobs/new
   def new
     @current_user = current_user
-    puts @current_user.inspect
     @job = Job.new
   end
 
@@ -30,7 +32,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: "Job was successfully created. #{view_context.link_to('Add Another Job', new_job_path)}".html_safe }
+        format.html { redirect_to @job, notice: "Job was successfully created." }
         format.json { render :show, status: :created, location: @job }
       else
         format.html { render :new }
@@ -72,5 +74,13 @@ class JobsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
       params.require(:job).permit(:title, :description, :want_junior, :want_intermediate, :want_senior, :want_executive, :job_type, :link, :organization_id)
+    end
+
+    def org_admin?
+      current_user.organizations.include?(@job.organization)
+    end
+
+    def deny_access
+      redirect_to jobs_url
     end
 end

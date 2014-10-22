@@ -1,3 +1,9 @@
+<% if current_user.organizations.include?(@job.organization) %>
+  <%= link_to new_job_path, :class => "btn btn-primary pull-right" do %>
+    <i class="fa fa-fw fa-plus"></i> Add another job
+  <% end %>
+<% end %>
+
 <h2><%= @job.title %></h2>
 <p><%= @job.description %></p>
 <p><%= @job.job_type %></p>
@@ -8,6 +14,8 @@
   <p>at <%= @job.organization.name %></p>
 <% end %>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Delete', @job, method: :delete %> |
-<%= link_to 'Back', jobs_path %>
+<% if current_user.organizations.include?(@job.organization) %>
+  <%= link_to 'Edit', edit_job_path(@job) %> |
+  <%= link_to 'Delete', @job, method: :delete %> |
+<% end %>
+<%= link_to 'Back to Jobs', jobs_path %>
