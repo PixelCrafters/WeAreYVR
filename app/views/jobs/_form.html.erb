@@ -22,27 +22,32 @@
   </div>
   <div class="form-group">
     <%= f.label 'Level' %>
-    
     <p class="small">What level of experience are you looking for?</p>
-    <%= f.check_box :want_junior, class: "form-control" %> Junior
-    <%= f.check_box :want_intermediate, class: "form-control" %> Intermediate
-    <%= f.check_box :want_senior, class: "form-control" %> Senior
-    <%= f.check_box :want_executive, class: "form-control" %> Executive
+    <%= f.check_box :want_junior %> Junior
+    <%= f.check_box :want_intermediate %> Intermediate
+    <%= f.check_box :want_senior %> Senior
+    <%= f.check_box :want_executive %> Executive
   </div>
   <div class="form-group">
     <%= f.label :job_type %><span class="required">*</span>
     <p class="small">Broadly speaking, what is the primary area of your company that this job is in?</p>
-    <%= f.text_field :job_type, :required => true, class: "form-control" %>
+    <%= f.radio_button :job_type, 'Design', :checked => true %> Design
+    <%= f.radio_button :job_type, 'Sales' %> Sales
+    <%= f.radio_button :job_type, 'Business' %> Business
+    <%= f.radio_button :job_type, 'Product' %> Product
+    <%= f.radio_button :job_type, 'Development' %> Development
+    <%= f.radio_button :job_type, 'Marketing' %> Marketing
+    <%= f.radio_button :job_type, 'Other' %> Other:
+    <%= f.text_field :job_type, :required => true %>
     </p>
   </div>
   <div class="form-group">
     <%= f.label :link %><span class="required">*</span>
-    <p class="small">This should be a direct link to this job, not to your careers page</p>
+    <p class="small">This should be a direct link to this job, not to your careers page (start with http://)</p>
     <%= f.text_field :link, :required => true, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label 'Organization' %><span class="required">*</span>
-    <!-- collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {}) -->
     <%= f.collection_select(:organization_id, current_user.organizations.sort_by{ |org| org.name}, :id, :name, {:required => true}, {:class => 'form-control'}) %>
   </div>
   <div class="actions">

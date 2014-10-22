@@ -4,7 +4,6 @@ class Job < ActiveRecord::Base
   validates :job_type, presence: true
   validates :link, presence: true
 
-
   scope :sponsored, ->    { where(sponsored: true) }
   scope :nonsponsored, -> { where(sponsored: false) }
   scope :published, ->    { where(published: true) }
@@ -17,9 +16,10 @@ class Job < ActiveRecord::Base
   def search_data
     {
       title: title,
+      updated_at: updated_at,
       description: description,
       job_type: job_type,
-      level: level
+      level: levels_wanted
     }
   end
 

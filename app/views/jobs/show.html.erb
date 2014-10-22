@@ -5,17 +5,28 @@
 <% end %>
 
 <h2><%= @job.title %></h2>
-<p><%= @job.description %></p>
-<p><%= @job.job_type %></p>
-<p><%= @job.source %></p>
-<p><%= @job.link %></p>
-<p><%= @job.created_at.strftime("%B %d, %Y") %></p>
 <% if @job.organization.present? %>
-  <p>at <%= @job.organization.name %></p>
+  <p>at <%= link_to @job.organization.name, @job.organization %></p>
 <% end %>
+
+<div class="specimen">
+  <label>Posted on</label>
+  <p><%= @job.created_at.strftime("%B %d, %Y") %></p>
+  <label>Description</label>
+  <p><%= @job.description %></p>
+  <label>Job Type</label>
+  <p><%= @job.job_type %></p>
+  <% if !@job.levels_wanted.blank? %>
+    <label>Levels</label>
+    <p><%= @job.levels_wanted %></p>
+  <% end %>
+  <label>Link</label>
+  <p><%= link_to @job.link, @job.link %></p>
+</div>
+
 
 <% if current_user.organizations.include?(@job.organization) %>
   <%= link_to 'Edit', edit_job_path(@job) %> |
-  <%= link_to 'Delete', @job, method: :delete %> |
+  <%= link_to 'Delete', @job, :method => :delete, 'data-confirm' => "Are you sure?" %> |
 <% end %>
 <%= link_to 'Back to Jobs', jobs_path %>

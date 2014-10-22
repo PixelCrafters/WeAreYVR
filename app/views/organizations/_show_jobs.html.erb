@@ -7,7 +7,7 @@
       <%= job.description %>
       <% if organization_admin_user? %>
         <%= link_to 'Edit', edit_job_path(job) %>
-        <%= link_to 'Delete', job, :method => :delete %>
+        <%= link_to 'Delete', job, :method => :delete, 'data-confirm' => "Are you sure?" %>
       <% end %>
     </p>
   <% end %>

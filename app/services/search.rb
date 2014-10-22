@@ -16,6 +16,8 @@ class Search
       organizations
     elsif search_type == "user"
       users
+    elsif search_type == "job"
+      jobs
     else
       all_results
     end
@@ -24,7 +26,7 @@ class Search
   private
 
   def all_results
-    organizations + users
+    organizations + users + jobs
   end
 
   def organizations
@@ -33,6 +35,10 @@ class Search
 
   def users
     User.search(query, conditions).results
+  end
+
+  def jobs
+    Job.search(query, conditions).results
   end
 
   def conditions

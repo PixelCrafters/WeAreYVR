@@ -1,0 +1,35 @@
+<%= render "search/jobs_search" %>
+
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <% if @results.empty? %>
+      <h4>Sorry! No results.</h4>
+    <% elsif @results.present? %>
+      <% if params[:query] %>
+        <h4>Results for "<%= params[:query] %>"</h4>
+        <br />
+      <% end %>
+      <div id="jobs">
+        <% @results.each do |job| %>
+        <p class="search-result">
+          <% if job.is_a?(Job) %>  
+            <% if job.organization.image.present? %>
+              <%= image_tag job.organization.image, height: '30' %>
+            <% else %>
+              <i class='wr-icon wr-icon-jobs'></i>
+            <% end %>
+            <%= link_to job.title, job %>
+          <% end %>
+        </p>
+        
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>  
+
+<div class="row">
+  <div class="col-sm-10">
+    <%= paginate @results if @results %>
+  </div>
+</div>

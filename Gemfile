@@ -42,6 +42,7 @@ gem 'intercom-rails', '~> 0.2.24'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 gem 'acts_as_paranoid', github: 'ActsAsParanoid/acts_as_paranoid'
+gem 'active_admin_import', '~> 2.1.1'
 
 group :development, :test do
   gem 'rspec-rails'

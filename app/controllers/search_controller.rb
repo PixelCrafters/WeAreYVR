@@ -14,6 +14,11 @@ class SearchController < ApplicationController
     @results = Kaminari.paginate_array(@results).page(params[:page])
   end
 
+  def search_jobs
+    @results = Search.call(prepare_search_params, "job")
+    @results = Kaminari.paginate_array(@results).page(params[:page])
+  end
+
   private
 
   def prepare_search_params

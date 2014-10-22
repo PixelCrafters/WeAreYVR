@@ -40,6 +40,10 @@ GEM
       activesupport (= 4.1.0)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    active_admin_import (2.1.1)
+      activeadmin (>= 0.6.0)
+      activerecord-import (~> 0.4, >= 0.4.1)
+      rubyzip (~> 1.0, >= 1.0.0)
     activemodel (4.1.0)
       activesupport (= 4.1.0)
       builder (~> 3.1)
@@ -47,6 +51,8 @@ GEM
       activemodel (= 4.1.0)
       activesupport (= 4.1.0)
       arel (~> 5.0.0)
+    activerecord-import (0.6.0)
+      activerecord (>= 3.0)
     activerecord-session_store (0.1.0)
       actionpack (>= 4.0.0, < 5)
       activerecord (>= 4.0.0, < 5)
@@ -338,6 +344,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin_import (~> 2.1.1)
   activeadmin!
   activerecord-session_store
   acts-as-taggable-on (= 3.2.3)

@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
   def unset_original_url
     session[:original_url] = nil
   end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end
