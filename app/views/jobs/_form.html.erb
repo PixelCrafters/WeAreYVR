@@ -12,7 +12,7 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= f.label :title %> 
+    <%= f.label :title %><span class="required">*</span> 
     <p class="small">e.g. Senior Widget Wrangler, Cloud Engineer, Marketing Ninja</p>
     <%= f.text_field :title, :required => true, class: "form-control" %>
   </div>
@@ -21,35 +21,29 @@
     <%= f.text_field :description, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :level %>
+    <%= f.label 'Level' %>
+    
     <p class="small">What level of experience are you looking for?</p>
-    <%= f.select(:level, [['Junior', 'Junior'],
-                                    ['Intermediate', 'Intermediate'],
-                                    ['Senior', 'Senior'],
-                                    ['Executive', 'Executive'],
-                                    ['All', 'All']
-                                   ],{ },
-                                     { :multiple => false, :size => 5, :required => true, :class => 'form-control' }
-                                  ) %>
+    <%= f.check_box :want_junior, class: "form-control" %> Junior
+    <%= f.check_box :want_intermediate, class: "form-control" %> Intermediate
+    <%= f.check_box :want_senior, class: "form-control" %> Senior
+    <%= f.check_box :want_executive, class: "form-control" %> Executive
   </div>
   <div class="form-group">
-    <%= f.label :job_type %>
+    <%= f.label :job_type %><span class="required">*</span>
     <p class="small">Broadly speaking, what is the primary area of your company that this job is in?</p>
     <%= f.text_field :job_type, :required => true, class: "form-control" %>
     </p>
   </div>
   <div class="form-group">
-    <%= f.label :source %>
-    <%= f.text_field :source, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :link %>
+    <%= f.label :link %><span class="required">*</span>
     <p class="small">This should be a direct link to this job, not to your careers page</p>
     <%= f.text_field :link, :required => true, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label 'Organization' %>
-    <%= f.collection_select(:organization_id, current_user.organizations.sort_by{ |org| org.name}, :id, :name, {:include_blank => true}, :required => true, class: "form-control") %>
+    <%= f.label 'Organization' %><span class="required">*</span>
+    <!-- collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {}) -->
+    <%= f.collection_select(:organization_id, current_user.organizations.sort_by{ |org| org.name}, :id, :name, {:required => true}, {:class => 'form-control'}) %>
   </div>
   <div class="actions">
     <% if f.object.new_record? %>

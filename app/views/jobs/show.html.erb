@@ -1,8 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h2><%= @job.title %></h2>
 <p><%= @job.description %></p>
-<p><%= @job.level %></p>
 <p><%= @job.job_type %></p>
 <p><%= @job.source %></p>
 <p><%= @job.link %></p>
@@ -12,4 +9,5 @@
 <% end %>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Delete', @job, method: :delete %> |
 <%= link_to 'Back', jobs_path %>

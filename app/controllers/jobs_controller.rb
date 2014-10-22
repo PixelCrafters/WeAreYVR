@@ -30,7 +30,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.html { redirect_to @job, notice: "Job was successfully created. #{view_context.link_to('Add Another Job', new_job_path)}".html_safe }
         format.json { render :show, status: :created, location: @job }
       else
         format.html { render :new }
@@ -71,6 +71,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description, :level, :job_type, :source, :link, :organization_id)
+      params.require(:job).permit(:title, :description, :want_junior, :want_intermediate, :want_senior, :want_executive, :job_type, :link, :organization_id)
     end
 end

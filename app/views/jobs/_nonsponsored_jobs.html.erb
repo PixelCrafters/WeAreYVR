@@ -1,0 +1,40 @@
+<% @jobs.nonsponsored.published.last_month.each do |job| %>
+  <div class="row job-listing job-listing--premium">
+    <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
+      <%= link_to job do %>
+        <!-- <div class="job-listing__new">New</div> -->
+        <h3><%= job.title %></h3>
+        <p><%= job.description %></p>
+      <% end %>
+      <% if job.source.present? %>
+        <div class="job-listing__via">
+          via <%= job.source %>
+        </div>
+      <% end %>
+    </div>
+    <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
+      <%= link_to job.organization.name, organization_path(job.organization), :class => "job-listing__org__logo" %>
+    </div>
+    <div class="job-listing__meta col-md-6 col-xs-12">
+      <div class="row">
+        <% if job.organization.neighbourhood.present? %>
+          <div class="job-listing__location col-xs-3">
+            <%= job.organization.neighbourhood %>
+          </div>
+        <% else %>
+          <div class="col-xs-3">
+          </div>
+        <% end %>
+        <div class="job-listing__level col-xs-3">
+          <%= job.levels_wanted %>
+        </div>
+        <div class="job-listing__type col-xs-3">
+          <%= job.job_type %>
+        </div>
+        <div class="job-listing__posted col-xs-3">
+          <%= time_ago_in_words(job.created_at) %> ago
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

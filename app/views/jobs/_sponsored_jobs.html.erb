@@ -1,0 +1,60 @@
+<% if !@jobs.sponsored.published.last_month.empty? %>
+  <% @jobs.sponsored.each do |sponsored_job| %>
+    <div class="row job-listing job-listing--premium">
+      <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
+        <%= link_to sponsored_job do %>
+          <!-- <div class="job-listing__new">New</div> -->
+          <h3><%= sponsored_job.title %></h3>
+          <p><%= sponsored_job.description %></p>
+        <% end %>
+        <div class="job-listing__via">
+          <% if sponsored_job.source.present? %>
+            via <%= sponsored_job.source %>
+          <% end %>
+        </div>
+      </div>
+      <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
+        <%= link_to organization_path(sponsored_job.organization), :class => "job-listing__org__logo" do %>
+          <% if sponsored_job.organization.image.present? %>
+            <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
+          <% else %>
+            <%= sponsored_job.organization.name %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="job-listing__meta col-md-6 col-xs-12">
+        <div class="row">
+          <% if sponsored_job.organization.neighbourhood.present? %>
+            <div class="job-listing__location col-xs-3">
+              <%= sponsored_job.organization.neighbourhood %>
+            </div>
+          <% else %>
+            <div class="col-xs-3">
+            </div>
+          <% end %>
+          <div class="job-listing__level col-xs-3">
+            <%= sponsored_job.levels_wanted %>
+          </div>
+          <div class="job-listing__type col-xs-3">
+            <%= sponsored_job.job_type %>
+          </div>
+          <div class="job-listing__posted col-xs-3">
+            <%= time_ago_in_words(sponsored_job.created_at) %> ago
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="row job-board__sponsors">
+    <div class="col-xs-12">
+      <h3>Sponsored by</h3>
+      <% @jobs.sponsored.each do |sponsored_job| %>
+        <% if sponsored_job.organization.image.present? %>
+          <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
+        <% else %>
+          <%= sponsored_job.organization.name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

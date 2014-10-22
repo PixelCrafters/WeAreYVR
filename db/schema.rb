@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021004148) do
+ActiveRecord::Schema.define(version: 20141022001245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,14 +94,19 @@ ActiveRecord::Schema.define(version: 20141021004148) do
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "level"
     t.string   "job_type"
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
     t.string   "source"
-    t.boolean  "sponsored",       default: false
+    t.boolean  "sponsored",         default: false
+    t.boolean  "published",         default: false
+    t.datetime "deleted_at"
+    t.boolean  "want_junior"
+    t.boolean  "want_intermediate"
+    t.boolean  "want_senior"
+    t.boolean  "want_executive"
   end
 
   add_index "jobs", ["organization_id"], name: "index_jobs_on_organization_id", using: :btree
