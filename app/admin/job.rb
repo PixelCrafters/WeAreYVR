@@ -14,6 +14,11 @@ ActiveAdmin.register Job do
   #   permitted
   # end
 
+  active_admin_import :validate => false,
+                            :csv_options => {:col_sep => "," },
+                            :timestamps => true
+                            
+
   batch_action :publish do |selection|
     Job.find(selection).each do |job|
       job.published = true

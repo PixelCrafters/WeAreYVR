@@ -1,4 +1,4 @@
-<% if current_user.organizations.include?(@job.organization) %>
+<% if current_user && current_user.organizations.include?(@job.organization) %>
   <%= link_to new_job_path, :class => "btn btn-primary pull-right" do %>
     <i class="fa fa-fw fa-plus"></i> Add another job
   <% end %>
@@ -25,7 +25,7 @@
 </div>
 
 
-<% if current_user.organizations.include?(@job.organization) %>
+<% if current_user && current_user.organizations.include?(@job.organization) %>
   <%= link_to 'Edit', edit_job_path(@job) %> |
   <%= link_to 'Delete', @job, :method => :delete, 'data-confirm' => "Are you sure?" %> |
 <% end %>
