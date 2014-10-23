@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
   include PublicActivity::Common
 
@@ -16,6 +18,16 @@ class User < ActiveRecord::Base
       updated_at: updated_at,
       tag_names: tags.map(&:name)
     }
+  end
+
+  def image_fallback
+    if self.image.blank?
+      email_address = self.email.blank? ? '' : self.email.downcase
+      hash = Digest::MD5.hexdigest(email_address)
+      "http://www.gravatar.com/avatar/#{hash}"
+    else
+      self.image
+    end
   end
 
   def uid(connection)
