@@ -27,7 +27,11 @@ ActiveAdmin.register Job do
   index do
     selectable_column
     column :title
-    column :organization
+    column :organization do |job|
+      if job.organization
+        link_to job.organization.name, edit_admin_organization_path(job.organization.id)
+      end
+    end
     column :updated_at
     column :sponsored
     column :published
