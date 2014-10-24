@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-10">
+    <% if @results.empty? %>
+      <h1>Sorry! No results.</h1>
+    <% elsif @results.present? %>
+      <% if params[:query] %>
+        <h1>Results for "<%= params[:query] %>"</h1>
+        <br />
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= render "jobs/nonsponsored_jobs" %>

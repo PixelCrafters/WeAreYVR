@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930185217) do
+ActiveRecord::Schema.define(version: 20141022001245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,26 @@ ActiveRecord::Schema.define(version: 20140930185217) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "jobs", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "job_type"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organization_id"
+    t.string   "source"
+    t.boolean  "sponsored",         default: false
+    t.boolean  "published",         default: false
+    t.datetime "deleted_at"
+    t.boolean  "want_junior"
+    t.boolean  "want_intermediate"
+    t.boolean  "want_senior"
+    t.boolean  "want_executive"
+  end
+
+  add_index "jobs", ["organization_id"], name: "index_jobs_on_organization_id", using: :btree
 
   create_table "organization_user_roles", force: true do |t|
     t.integer "organization_id"

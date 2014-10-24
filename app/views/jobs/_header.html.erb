@@ -1,0 +1,19 @@
+<header class="row job-board__header">
+  <div class="col-xs-12">
+    <h2>
+      <i class="wr-icon wr-icon-jobs"></i>Jobs <small><%= @jobs.published.last_month.count %> jobs</small>
+    </h2>
+    <% if current_user %>
+      <%= link_to new_job_path, :class => "btn btn-primary pull-right" do %>
+        <i class="fa fa-fw fa-plus"></i> Add a job
+      <% end %>
+    <% end %>
+  </div>
+</header>
+<div class="row job-board__presented">
+  <div class="col-sm-6 col-sm-offset-3">
+    <a href="http://www.startupweekvancouver.ca/"><img src="http://d9hhrg4mnvzow.cloudfront.net/www.startupweekvancouver.ca/d04e9e2b-logo.png" alt="Startup Week Vancouver"></a>
+    <h3 class="job-board__presented__by"><span>Presented by</span> <a href="http://www.startupweekvancouver.ca/">Startup Week Vancouver</a></h3>
+    <p>A week-long series of events around the city to celebrate our tech community and startup ecosystem. <a href="https://twitter.com/hashtag/startupweekvan" style="display:inline">#startupweekvan</a></p>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<% @results.each do |job| %>
+  <div class="row job-listing job-listing">
+    <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
+      <%= link_to job.link do %>
+        <!-- <div class="job-listing__new">New</div> -->
+        <h3><%= job.title %></h3>
+        <p><%= job.description %></p>
+        <% if current_user && current_user.organizations.include?(job.organization) %>
+          <p style="margin-top: 10px;"><%= link_to 'Edit', edit_job_url(job), class: 'btn btn-default' %></p>
+        <% end %>
+      <% end %>
+      <% if job.source.present? %>
+        <div class="job-listing__via">
+          via <%= job.source %>
+        </div>
+      <% end %>
+    </div>
+    <% unless @hide_organization %>
+    <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
+      <% if job.organization.types.length > 0 %>
+      <a href="<%= organization_path(job.organization) %>" class="entity <%= job.organization.types.first.css_link_class %>"><span class="wr-icon <%= job.organization.types.first.css_icon_class %>"></span> <%= job.organization.name %></a>
+      <% else %>
+      <a href="<%= organization_path(job.organization) %>" class="entity wr-icon-startup"><span class="wr-icon wr-icon-startup"></span> <%= job.organization.name %></a>
+      <% end %>
+    </div>
+    <% end %>
+    <div class="job-listing__meta <%= @hide_organization ? 'col-md-8 col-xs-12' : 'col-md-6 col-xs-12' %>">
+      <div class="row">
+        <% if job.organization.neighbourhood.present? %>
+          <div class="job-listing__location col-xs-3">
+            <%= job.organization.neighbourhood %>
+          </div>
+        <% else %>
+          <div class="col-xs-3">
+          </div>
+        <% end %>
+        <div class="job-listing__level col-xs-3">
+          <%= job.levels_wanted %>
+        </div>
+        <div class="job-listing__type col-xs-3">
+          <%= job.job_type %>
+        </div>
+        <div class="job-listing__posted col-xs-3">
+          <%= time_ago_in_words(job.created_at) %> ago
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-10">
+    <%= paginate @results %>
+  </div>
+</div>

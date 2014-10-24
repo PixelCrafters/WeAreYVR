@@ -18,6 +18,7 @@
     <%= render "organizations/quick_facts" %>
     <%= render "organizations/why_vancouver" %>
     <%= render "organizations/show_users" if @organization.organization_user_roles.any? %>
+    <%= render "organizations/show_jobs" if @organization.jobs.any? %>
   </div>
 </div>
 <div class="row">

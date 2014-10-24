@@ -1,0 +1,6 @@
+<section class="profile__jobs">
+  <h2>Jobs</h2>
+  <% @results = @organization.jobs.page params[:page] %>
+  <% @hide_organization = true %>
+  <%= render "jobs/nonsponsored_jobs" %>
+</section>

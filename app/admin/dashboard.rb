@@ -49,6 +49,18 @@ ActiveAdmin.register_page "Dashboard" do
         end                
       end
     end
+
+    panel "Recent Jobs" do
+      table_for Job.order('id desc').limit(10) do
+        column "Title" do |job|
+          link_to job.title, admin_job_path(job.id)  
+        end
+        column :organization
+        column :updated_at
+        column :sponsored
+        column :published
+      end
+    end
       
   end # content
 end

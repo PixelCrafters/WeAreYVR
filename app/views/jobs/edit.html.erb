@@ -1,0 +1,9 @@
+<% if current_user && current_user.organizations.include?(@job.organization) %>
+  <%= link_to new_job_path, :class => "btn btn-primary pull-right" do %>
+    <i class="fa fa-fw fa-plus"></i> Add another job
+  <% end %>
+<% end %>
+
+<h1>Editing job</h1>
+
+<%= render 'form' %>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/search", to: "search#index"
   get "/search/organizations", to: "search#search_organizations"
   get "/search/people", to: "search#search_users", as: "search_users"
-
+  get "/search/jobs", to: "search#search_jobs", as: "search_jobs"
 
   get "/about", to: 'pages#about'
   get "/contact", to: 'pages#contact'
@@ -51,8 +51,9 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [:update, :create]
 
-  resources :roles, only: [:index, :show]
+  resources :jobs, except: [:show]
 
+  resources :roles, only: [:index, :show]
   post "users/:id/email_digest_subscription", to: "users#toggle_email_digest_subscription", as: "toggle_email_digest_subscription"
 
   get "users/unsubscribe/:signature", to: "users#unsubscribe", as: "unsubscribe"
