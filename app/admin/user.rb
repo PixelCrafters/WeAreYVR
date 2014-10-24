@@ -39,7 +39,6 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
-    actions
     column "Name" do |user|
       link_to user.name, admin_user_path(user.id)  
     end
@@ -50,6 +49,7 @@ ActiveAdmin.register User do
     column "Date Created" do |user|
       user.created_at.strftime("%F")
     end
+    actions
   end
 
   show do

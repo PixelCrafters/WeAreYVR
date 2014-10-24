@@ -1,6 +1,4 @@
 ActiveAdmin.register Job do
-
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,10 +12,9 @@ ActiveAdmin.register Job do
   #   permitted
   # end
 
-  active_admin_import :validate => false,
-                            :csv_options => {:col_sep => "," },
-                            :timestamps => true
-                            
+  menu priority: 4
+
+  active_admin_import validate: false, csv_options: {:col_sep => "," }, timestamps: true
 
   batch_action :publish do |selection|
     Job.find(selection).each do |job|
@@ -27,5 +24,14 @@ ActiveAdmin.register Job do
     redirect_to :back
   end
 
+  index do
+    selectable_column
+    column :title
+    column :organization
+    column :updated_at
+    column :sponsored
+    column :published
+    actions
+  end
 
 end

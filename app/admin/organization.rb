@@ -54,7 +54,6 @@
 
   index do
     selectable_column
-    actions
     column :name, :min_width => "100px"
     column "Headline", :min_width => "250px" do |organization|
           truncate(organization.headline, omision: "…", length: 100)
@@ -79,6 +78,7 @@
     column "Date Created" do |organization|
       organization.created_at.strftime("%F")
     end
+    actions
   end
 
   show do

@@ -55,12 +55,10 @@ ActiveAdmin.register_page "Dashboard" do
         column "Title" do |job|
           link_to job.title, admin_job_path(job.id)  
         end
-        column "Organization" do |job|
-          link_to job.organization.name, admin_organization_path(job.organization.id)  
-        end
-        column "Date Created" do |job|
-          job.created_at.strftime("%F")
-        end                
+        column :organization
+        column :updated_at
+        column :sponsored
+        column :published
       end
     end
       
