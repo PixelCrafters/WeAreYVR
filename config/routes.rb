@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [:update, :create]
 
-  resources :jobs
+  resources :jobs, except: [:show]
 
   resources :roles, only: [:index, :show]
   post "users/:id/email_digest_subscription", to: "users#toggle_email_digest_subscription", as: "toggle_email_digest_subscription"

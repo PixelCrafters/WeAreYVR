@@ -1,14 +1,6 @@
 <section class="profile__jobs">
   <h2>Jobs</h2>
-  
-  <% @organization.jobs.each do |job| %>
-    <p>
-      <%= link_to job.title, job %>
-      <%= job.description %>
-      <% if organization_admin_user? %>
-        <%= link_to 'Edit', edit_job_path(job) %>
-        <%= link_to 'Delete', job, :method => :delete, 'data-confirm' => "Are you sure?" %>
-      <% end %>
-    </p>
-  <% end %>
+  <% @results = @organization.jobs.page params[:page] %>
+  <% @hide_organization = true %>
+  <%= render "jobs/nonsponsored_jobs" %>
 </section>

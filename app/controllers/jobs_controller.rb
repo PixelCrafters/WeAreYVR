@@ -1,75 +1,50 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
-  before_filter :deny_access, :unless => :org_admin?, only: [:edit, :destroy]
+  before_filter :deny_access, unless: :org_admin?, only: [:edit, :destroy]
 
-  # GET /jobs
-  # GET /jobs.json
   def index
     @jobs = Job.all
   end
 
-  # GET /jobs/1
-  # GET /jobs/1.json
-  def show
-    @current_user = current_user
-    render 'show'
-  end
-
-  # GET /jobs/new
   def new
     @current_user = current_user
     @job = Job.new
   end
 
-  # GET /jobs/1/edit
   def edit
   end
 
-  # POST /jobs
-  # POST /jobs.json
   def create
-    @job = Job.new(job_params)
+    @job = Job.new job_params
 
-    respond_to do |format|
-      if @job.save
-        format.html { redirect_to @job, notice: "Job was successfully created." }
-        format.json { render :show, status: :created, location: @job }
-      else
-        format.html { render :new }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    if @job.save
+      flash[:success] = "Job was successfully created."
+      redirect_to edit_job_url @job
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /jobs/1
-  # PATCH/PUT /jobs/1.json
   def update
-    respond_to do |format|
-      if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
-        format.json { render :show, status: :ok, location: @job }
-      else
-        format.html { render :edit }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    if @job.update job_params
+      flash[:success] = 'Job was successfully updated.'
+      redirect_to edit_job_url @job
+    else
+      render :edit
     end
   end
 
-  # DELETE /jobs/1
-  # DELETE /jobs/1.json
   def destroy
     @job.destroy
-    respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = 'Job was successfully destroyed.'
+    redirect_to jobs_url
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       begin
-        @job = Job.find(params[:id])
+        @job = Job.find params[:id]
       rescue ActiveRecord::RecordNotFound => e
         not_found
       end
@@ -81,7 +56,7 @@ class JobsController < ApplicationController
     end
 
     def org_admin?
-      current_user.organizations.include?(@job.organization)
+      current_user && current_user.organizations.include?(@job.organization)
     end
 
     def deny_access

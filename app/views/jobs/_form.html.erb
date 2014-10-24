@@ -14,47 +14,87 @@
   <div class="form-group">
     <%= f.label :title %><span class="required">*</span> 
     <p class="small">e.g. Senior Widget Wrangler, Cloud Engineer, Marketing Ninja</p>
-    <%= f.text_field :title, :required => true, class: "form-control" %>
+    <div class="row">
+      <div class="col-xs-7">
+        <%= f.text_field :title, :required => true, class: "form-control" %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_field :description, class: "form-control" %>
+    <div class="row">
+      <div class="col-xs-7">
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label 'Level' %>
     <p class="small">What level of experience are you looking for?</p>
-    <%= f.check_box :want_junior %> Junior
-    <%= f.check_box :want_intermediate %> Intermediate
-    <%= f.check_box :want_senior %> Senior
-    <%= f.check_box :want_executive %> Executive
+    <label class='checkbox-inline'>
+      <%= f.check_box :want_junior %> Junior
+    </label>
+    <label class='checkbox-inline'>
+      <%= f.check_box :want_intermediate %> Intermediate
+    </label>
+    <label class='checkbox-inline'>
+      <%= f.check_box :want_senior %> Senior
+    </label>
+    <label class='checkbox-inline'>
+      <%= f.check_box :want_executive %> Executive
+    </label>
   </div>
   <div class="form-group">
     <%= f.label :job_type %><span class="required">*</span>
     <p class="small">Broadly speaking, what is the primary area of your company that this job is in?</p>
-    <%= f.radio_button :job_type, 'Design', :checked => true %> Design
-    <%= f.radio_button :job_type, 'Sales' %> Sales
-    <%= f.radio_button :job_type, 'Business' %> Business
-    <%= f.radio_button :job_type, 'Product' %> Product
-    <%= f.radio_button :job_type, 'Development' %> Development
-    <%= f.radio_button :job_type, 'Marketing' %> Marketing
-    <%= f.radio_button :job_type, 'Other' %> Other:
-    <%= f.text_field :job_type, :required => true %>
-    </p>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Design', :checked => true %> Design
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Sales' %> Sales
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Business' %> Business
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Product' %> Product
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Development' %> Development
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Marketing' %> Marketing
+    </label>
+    <label class="radio-inline">
+      <%= f.radio_button :job_type, 'Other', style: 'margin-top: 11px;' %> Other:
+      <%= f.text_field :job_type, class: 'form-control', style: 'display: inline-block; margin-left: 5px; width: 175px;' %>
+    </label>
   </div>
   <div class="form-group">
     <%= f.label :link %><span class="required">*</span>
     <p class="small">This should be a direct link to this job, not to your careers page (start with http://)</p>
-    <%= f.text_field :link, :required => true, class: "form-control" %>
+    <div class="row">
+      <div class="col-xs-7">
+        <%= f.text_field :link, :required => true, class: "form-control" %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label 'Organization' %><span class="required">*</span>
-    <%= f.collection_select(:organization_id, current_user.organizations.sort_by{ |org| org.name}, :id, :name, {:required => true}, {:class => 'form-control'}) %>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= f.collection_select(:organization_id, current_user.organizations.sort_by{ |org| org.name}, :id, :name, {:required => true}, {:class => 'form-control'}) %>
+      </div>
+    </div>
   </div>
   <div class="actions">
     <% if f.object.new_record? %>
-      <%= submit_tag "Submit", class: "btn btn-default" %>
+      <%= submit_tag "Submit", class: "btn btn-primary" %>
     <% else %>
-      <%= submit_tag "Update", class: "btn btn-default" %>
+      <%= submit_tag "Update", class: "btn btn-primary" %>
+    <% end %>
+    <% if current_user && current_user.organizations.include?(@job.organization) && !f.object.new_record? %>
+      <%= link_to 'Delete', @job, method: :delete, :"data-confirm" => "Do you want this job to be permanently deleted?", class: 'btn btn-link'  %>
     <% end %>
   </div>
 <% end %>

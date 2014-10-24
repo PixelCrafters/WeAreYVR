@@ -2,10 +2,13 @@
   <% @jobs.sponsored.each do |sponsored_job| %>
     <div class="row job-listing job-listing--premium">
       <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
-        <%= link_to sponsored_job do %>
+        <%= link_to sponsored_job.link do %>
           <!-- <div class="job-listing__new">New</div> -->
           <h3><%= sponsored_job.title %></h3>
           <p><%= sponsored_job.description %></p>
+          <% if current_user && current_user.organizations.include?(sponsored_job.organization) %>
+            <p style="margin-top: 10px;"><%= link_to 'Edit', edit_job_url(sponsored_job), class: 'btn btn-default' %></p>
+          <% end %>
         <% end %>
         <div class="job-listing__via">
           <% if sponsored_job.source.present? %>
@@ -14,11 +17,15 @@
         </div>
       </div>
       <div class="job-listing__org col-md-2 col-sm-4 col-xs-12">
-        <%= link_to organization_path(sponsored_job.organization), :class => "job-listing__org__logo" do %>
-          <% if sponsored_job.organization.image.present? %>
+        <% if sponsored_job.organization.image.present? %>
+          <%= link_to organization_path(sponsored_job.organization), :class => "job-listing__org__logo" do %>
             <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
+          <% end %>
+        <% else %>
+          <% if sponsored_job.organization.types.length > 0 %>
+            <a href="<%= organization_path(sponsored_job.organization) %>" class="entity <%= sponsored_job.organization.types.first.css_link_class %>"><span class="wr-icon <%= sponsored_job.organization.types.first.css_icon_class %>"></span> <%= sponsored_job.organization.name %></a>
           <% else %>
-            <%= sponsored_job.organization.name %>
+            <a href="<%= organization_path(sponsored_job.organization) %>" class="entity wr-icon-startup"><span class="wr-icon wr-icon-startup"></span> <%= sponsored_job.organization.name %></a>
           <% end %>
         <% end %>
       </div>
