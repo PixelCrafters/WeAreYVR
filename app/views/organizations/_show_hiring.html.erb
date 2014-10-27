@@ -1,5 +1,6 @@
 <% if @organization.hiring? %>
   <section class="profile__jobs">
+    <% if @organization.hiring_url.present? %>
     <a href="<%= @organization.hiring_url %>" class="entity-lg wr-link-jobs">
       <span class="wr-icon wr-icon-jobs entity-lg__img"></span>
       <div class="entity-lg__txt">
@@ -7,6 +8,15 @@
         <div class="entity-lg__rel"><%= @organization.hiring_roles %></div>
       </div>
     </a>
+    <% else %>
+    <div class="entity-lg wr-link-jobs">
+      <span class="wr-icon wr-icon-jobs entity-lg__img"></span>
+      <div class="entity-lg__txt">
+        <div class="entity-lg__name">We’re hiring</div>
+        <div class="entity-lg__rel"><%= @organization.hiring_roles %></div>
+      </div>
+    </div>
+    <% end %>
   </section>
 <% end %>
 
