@@ -44,6 +44,8 @@ gem 'devise'
 gem 'acts_as_paranoid', github: 'ActsAsParanoid/acts_as_paranoid'
 gem 'active_admin_import', '~> 2.1.1'
 gem 'carrierwave', '~> 0.10.0'
+gem 'fog'
+gem "mini_magick", "~> 4.0.0.rc"
 
 group :development, :test do
   gem 'rspec-rails'

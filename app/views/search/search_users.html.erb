@@ -12,11 +12,8 @@
       <div id="users">
         <% @results.each do |result| %>
           <p class="search-result">
-
-            <% if result.avatar.present? %>
-              <%= image_tag result.avatar, height: "30" %>
-            <% elsif result.image.present? %>
-              <%= image_tag result.image, height: '30' %>
+            <% if result.image.present? %>
+              <%= image_tag result.image, height: "30" %>
             <% else %>
               <i class='wr-icon wr-icon-founder-av'></i>
             <% end %>

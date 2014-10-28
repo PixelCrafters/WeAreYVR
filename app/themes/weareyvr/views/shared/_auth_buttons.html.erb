@@ -13,8 +13,8 @@
     <button onclick="widget.signin({ scope: 'openid profile' })" class="btn btn-primary">Sign in</button>
   <% end %>
   <% if current_user %>
-    <% if current_user.avatar.present? %>
-      <%= link_to image_tag(current_user.avatar, height: '30'), user_path(current_user) %>
+    <% if current_user.image.present? %>
+      <%= link_to image_tag(current_user.image, height: '30'), user_path(current_user) %>
     <% else %>
       <%= link_to image_tag(current_user.image_fallback, height: '30'), user_path(current_user) %>
     <% end %>  

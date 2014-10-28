@@ -1,12 +1,10 @@
 <section class="profile__header">
   <h1><%= @user.name %></h1>
 
-  <% if @user.avatar.present? %>
-    <%= image_tag @user.avatar, height: "100" %>
+  <% if @user.image.present? %>
+    <%= image_tag @user.image, height: "100" %>
   <% elsif @user.startup_genome_image.present? %>
     <%= image_tag @user.startup_genome_image %>
-  <% elsif @user.image.present? %>
-    <%= image_tag @user.image.gsub('_normal.', '.') %>
   <% else %>
     <span class="glyphicon glyphicon-user"></span>
   <% end %>

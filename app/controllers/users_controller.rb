@@ -67,9 +67,9 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-  def upload_avatar
+  def upload_image
     @user = User.find(params[:id])
-    @user.avatar = params[:avatar]
+    @user.image = params[:image]
     if @user.save!
       flash[:success] = "Your image was successfully saved!"
     else

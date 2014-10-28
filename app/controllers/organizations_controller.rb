@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController  
   before_filter :check_if_signed_in, only: [:claim, :edit, :toggle_hiring, :destroy_tag, :add_role, :destroy_role]
   after_filter :unset_original_url, only: [:claim]
-  before_filter :find_organization, only: [:show, :claim, :edit, :update, :toggle_hiring, :add_role]
+  before_filter :find_organization, only: [:show, :claim, :edit, :update, :toggle_hiring, :add_role, :upload_image]
 
   def index
     @organizations = Organization.all.order("updated_at DESC").page(params[:page])
@@ -36,6 +36,16 @@ class OrganizationsController < ApplicationController
         redirect_to @organization
       end
     end
+  end
+
+  def upload_image
+    @organization.image = params[:image]
+    if @organization.save!
+      flash[:success] = "Your image was successfully saved!"
+    else
+      flash[:error] = "We had a problem saving your image."
+    end
+    redirect_to @organization
   end
 
   def edit

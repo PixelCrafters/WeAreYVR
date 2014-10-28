@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :organizations, only: [:index, :show, :edit, :update, :new, :create] do
     get "claim", on: :member
     post "toggle_hiring", on: :member
+    post "upload_image", on: :member
   end
 
   get "/auth/auth0/callback", to: "auth0#callback"
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update, :edit] do
     get "claim", on: :member
-    post "upload_avatar", on: :member
+    post "upload_image", on: :member
   end
 
   get "/people", to: "users#index", as: "users"
