@@ -14,7 +14,7 @@
   <% end %>
   <% if current_user %>
     <% if current_user.image.present? %>
-      <%= link_to image_tag(current_user.image, height: '30'), user_path(current_user) %>
+      <%= link_to image_tag(current_user.image_url(:small_thumb), height: '30'), user_path(current_user) %>
     <% else %>
       <%= link_to image_tag(current_user.image_fallback, height: '30'), user_path(current_user) %>
     <% end %>  
