@@ -1,8 +1,6 @@
 <div class="header-image">
   <% if @organization.image.present? %>
-    <%= image_tag @organization.image %>
-  <% elsif @organization.image.present? %>
-    <%= image_tag @organization.image, class: "pull-left" %>
+    <%= image_tag @organization.image_url(:thumb) %>
   <% else %>
     <span class="glyphicon glyphicon-user"></span>
   <% end %>

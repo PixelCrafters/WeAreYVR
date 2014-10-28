@@ -1,6 +1,4 @@
 CarrierWave.configure do |config|
-  
- 
   # For testing, upload files to local `tmp` folder.
   if !ENV['S3_KEY'] || !ENV['S3_SECRET']
     config.storage = :file

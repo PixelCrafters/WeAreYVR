@@ -5,7 +5,7 @@
     <% if !role.user.nil? %>
       <a href="<%= user_path(role.user) %>" class="entity-lg entity-lg--fixed <%= role.css_link_class %>">
         <% if role.user.image.present? %>
-          <%= image_tag role.user.image, :class => "entity-lg__img" %>
+          <%= image_tag role.user.image_url(:small_thumb), :class => "entity-lg__img" %>
         <% else %>    
           <img src="<%= role.user.image %>" class="entity-lg__img">
         <% end %>

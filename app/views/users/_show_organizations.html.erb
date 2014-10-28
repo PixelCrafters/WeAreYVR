@@ -9,7 +9,7 @@
         <li>
           <a href="<%= organization_path(organization) %>" class="entity-lg wr-link-incubator">
             <% if organization.image.present? %>
-              <%= image_tag organization.image, class: "entity-lg__img" %>
+              <%= image_tag organization.image_url(:small_thumb), class: "entity-lg__img" %>
             <% else %>
               <span class="wr-icon wr-icon-incubator entity-lg__img"></span>
             <% end %>
@@ -24,7 +24,7 @@
         <li>
           <a href="<%= organization_path(role.organization) %>" class="entity-lg wr-link-incubator">
             <% if role.organization.image.present? %>
-              <%= image_tag role.organization.image, class: "entity-lg__img" %>
+              <%= image_tag role.organization.image_url(:small_thumb), class: "entity-lg__img" %>
             <% else %>
               <span class="wr-icon wr-icon-incubator entity-lg__img"></span>
             <% end %>
