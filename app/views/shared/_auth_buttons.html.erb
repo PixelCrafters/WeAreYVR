@@ -12,7 +12,11 @@
     <button onclick="widget.signin({ scope: 'openid profile' })" class="btn btn-default" >Login</button>
   <% end %>
   <% if current_user %>
-    <%= link_to image_tag(current_user.image, height: '30'), user_path(current_user) %>
+    <%  if current_user.avatar.present? %>
+      <%= link_to image_tag(current_user.avatar, height: '30'), user_path(current_user) %>
+    <% else %>
+      <%= link_to image_tag(current_user.image, height: '30'), user_path(current_user) %>
+    <% end %>
     <%= link_to "Logout", unset_session_path, class: "btn btn-default" %>
   <% end %>
 </div>

@@ -69,12 +69,13 @@ class UsersController < ApplicationController
 
   def upload_avatar
     @user = User.find(params[:id])
-    user.avatar = params[:avatar]
-    if user.save!
+    @user.avatar = params[:avatar]
+    if @user.save!
       flash[:success] = "Your image was successfully saved!"
     else
       flash[:error] = "We had a problem saving your image."
     end
+    redirect_to @user
   end
 
   private

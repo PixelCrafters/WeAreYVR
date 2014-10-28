@@ -1,6 +1,9 @@
 <section class="profile__header">
   <h1><%= @user.name %></h1>
-  <% if @user.startup_genome_image.present? %>
+
+  <% if @user.avatar.present? %>
+    <%= image_tag @user.avatar, height: "100" %>
+  <% elsif @user.startup_genome_image.present? %>
     <%= image_tag @user.startup_genome_image %>
   <% elsif @user.image.present? %>
     <%= image_tag @user.image.gsub('_normal.', '.') %>
