@@ -7,7 +7,7 @@ class TypesController < ApplicationController
       @organization.types << type
       flash[:success] = "You've successfully added the type #{type.name}"
     rescue ActiveRecord::RecordNotUnique
-      flash[:error] = "You've already added type #{type.name} to #{@organization.name}"
+      flash[:danger] = "You've already added type #{type.name} to #{@organization.name}"
     end
     redirect_to edit_organization_path(@organization)
   end

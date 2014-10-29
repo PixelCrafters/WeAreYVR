@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -31,18 +31,21 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'searchkick'
 gem 'faraday'
 gem 'auth0'
-gem 'jwt', '0.1.11' #to fix dependency issue with jwt on heroku
+gem 'jwt', '0.1.11' # to fix dependency issue with jwt on heroku
 gem 'acts-as-taggable-on', '3.2.3'
 gem 'public_activity'
 gem 'rails_12factor', group: :production
 gem 'themes_on_rails'
 gem 'kaminari-bootstrap', '~> 3.0.1'
-gem 'intercom-rails', '~> 0.2.24'
 
+gem 'intercom-rails', '~> 0.2.24'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 gem 'acts_as_paranoid', github: 'ActsAsParanoid/acts_as_paranoid'
 gem 'active_admin_import', '~> 2.1.1'
+gem 'carrierwave', '~> 0.10.0'
+gem 'fog'
+gem "mini_magick", "~> 4.0.0.rc"
 
 group :development, :test do
   gem 'rspec-rails'

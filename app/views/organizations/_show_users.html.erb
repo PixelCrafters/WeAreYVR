@@ -4,7 +4,11 @@
   <% @organization.organization_user_roles.each do |role| %>
     <% if !role.user.nil? %>
       <a href="<%= user_path(role.user) %>" class="entity-lg entity-lg--fixed <%= role.css_link_class %>">
-        <img src="<%= role.user.image %>" class="entity-lg__img">
+        <% if role.user.image.present? %>
+          <%= image_tag role.user.image_url(:small_thumb), :class => "entity-lg__img" %>
+        <% else %>    
+          <img src="<%= role.user.image %>" class="entity-lg__img">
+        <% end %>
         <div class="entity-lg__txt">
           <div class="entity-lg__name"><%= role.user.name %></div>
           <div class="entity-lg__rel"><%= role.name %></div>

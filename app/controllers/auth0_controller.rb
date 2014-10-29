@@ -8,7 +8,7 @@ class Auth0Controller < ApplicationController
     if params[:success] == "true"
       flash[:success] = "Thank you! Your email has been verified."
     else
-      flash[:error] = "There was a problem verifying your email."
+      flash[:danger] = "There was a problem verifying your email."
     end
 
     redirect_to root_url

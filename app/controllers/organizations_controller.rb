@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController  
   before_filter :check_if_signed_in, only: [:claim, :edit, :toggle_hiring, :destroy_tag, :add_role, :destroy_role]
   after_filter :unset_original_url, only: [:claim]
-  before_filter :find_organization, only: [:show, :claim, :edit, :update, :toggle_hiring, :add_role]
+  before_filter :find_organization, only: [:show, :claim, :edit, :update, :toggle_hiring, :add_role, :upload_image]
 
   def index
     @organizations = Organization.all.order("updated_at DESC").page(params[:page])
@@ -19,7 +19,7 @@ class OrganizationsController < ApplicationController
     if @organization.persisted?
       flash[:success] = "The organization was added successfully"
     else
-      flash[:error] = "There was a problem adding your organization"
+      flash[:danger] = "There was a problem adding your organization"
     end
     redirect_to [:edit, @organization]
   end
@@ -38,6 +38,17 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def upload_image
+    @organization.image = params[:image]
+    if params[:image] && @organization.save!
+      flash[:success] = "Your image was successfully saved!"
+      redirect_to @organization
+    else
+      flash[:danger] = "We had a problem saving your image."
+      redirect_to edit_organization_path @organization
+    end
+  end
+
   def edit
     @profile_link = ProfileLink.new(:linkable => @organization)
     @address = @organization.main_address || Address.new
@@ -47,7 +58,7 @@ class OrganizationsController < ApplicationController
     if @organization.update!(organization_params)
       flash[:success] = "The organization was updated successfully"
     else
-      flash[:error] = "There was a problem updating your organization"
+      flash[:danger] = "There was a problem updating your organization"
     end
     redirect_to edit_organization_path(@organization)
   end

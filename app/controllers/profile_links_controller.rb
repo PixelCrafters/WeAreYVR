@@ -5,7 +5,7 @@ class ProfileLinksController < ApplicationController
       ProfileLink::Activity::Store.call(profile_link, current_user, "create")
       flash[:success] = "Your link was created successfully!"
     else
-      flash[:error] = "Your link was not created successfully."
+      flash[:danger] = "Your link was not created successfully."
     end
     if profile_link.linkable_type == "Organization"
       redirect_to edit_organization_path(profile_link.linkable)

@@ -9,7 +9,7 @@ class OrganizationUserRolesController < ApplicationController
       flash[:success] = "Your role was saved successfully!"
     rescue ActiveRecord::RecordNotUnique => e
       role = Role.find(params[:role][:id])
-      flash[:error] = "You've already saved the role '#{role.name}' for this organization"
+      flash[:danger] = "You've already saved the role '#{role.name}' for this organization"
     end
     redirect_to session[:original_url]
   end
