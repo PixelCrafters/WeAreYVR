@@ -10,19 +10,22 @@ class StoreAuthorizedUser
 
   def call
     attributes = {
-      image: userinfo["info"]["image"],
       email: userinfo["info"]["email"],
       email_verified: userinfo["extra"]["raw_info"]["email_verified"]
     }
     user = ""
     if claimed_user.present?
       user = User.find(claimed_user)
-      user.update!(attributes)
+      user.assign_attributes attributes
+      user.remote_image_url = userinfo["info"]["image"]
     else
-      attributes[:name] = userinfo["info"]["name"]
-      attributes[:claimed] = true
-      user = User.create!(attributes)
+      user = User.new
+      user.assign_attributes attributes
+      user.name = userinfo["info"]["name"]
+      user.claimed = true
+      user.remote_image_url = userinfo["info"]["image"]
     end
+    user.save!
     user.create_activity key: "user.create", owner: user
     user
   end

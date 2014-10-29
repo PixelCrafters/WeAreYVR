@@ -20,11 +20,13 @@ module StartupGenome
     def store_organization(org_hash)
       data = build_data_hash(org_hash)
       organization = Organization.find_or_initialize_by(name: org_hash["name"])
+      organization.assign_attributes(data)
+      organization.remote_image_url = org_hash["image"]
       msg = ""
       if organization.new_record?
-        msg = organization.update!(data) ? "Successfully created/updated #{org_hash['name']}" : "Failed to update #{org_hash['name']}"
+        msg = organization.save! ? "Successfully created/updated #{org_hash['name']}" : "Failed to update #{org_hash['name']}"
       elsif !organization.claimed?
-        msg = organization.update!(data) ? "Successfully created/updated #{org_hash['name']}" : "Failed to update #{org_hash['name']}"
+        msg = organization.save! ? "Successfully created/updated #{org_hash['name']}" : "Failed to update #{org_hash['name']}"
       end
       puts msg
       organization
@@ -50,8 +52,8 @@ module StartupGenome
         startup_genome_slug: org_hash["slug"],
         url: org_hash["url"],
         founded: org_hash["founded"].to_i,
-        startup_genome_id: org_hash["organization_id"],
-        image: org_hash["image"] }
+        startup_genome_id: org_hash["organization_id"]
+      }
     end
   end
 end
