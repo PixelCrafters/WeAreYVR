@@ -2,7 +2,7 @@
   <% @jobs.sponsored.each do |sponsored_job| %>
     <div class="row job-listing job-listing--premium">
       <div class="job-listing__title col-md-4 col-sm-8 col-xs-12">
-        <%= link_to sponsored_job.link do %>
+        <%= link_to sponsored_job.link, target: '_blank' do %>
           <!-- <div class="job-listing__new">New</div> -->
           <h3><%= sponsored_job.title %></h3>
           <p><%= sponsored_job.description %></p>
