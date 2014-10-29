@@ -14,7 +14,7 @@
   #  permitted
   # end
 
-  permit_params :name, :headline, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles, :why_vancouver, :hiring_roles, :number_of_employees, :neighbourhood, :profile_links
+  permit_params :name, :headline, :image, :description, :founded, :active, :claimed, :hiring, :hiring_url, :admin_id, :organization_user_roles, :why_vancouver, :hiring_roles, :number_of_employees, :neighbourhood, :profile_links
 
   # AA doesn't handle has_many well, so don't use those
   filter :name
