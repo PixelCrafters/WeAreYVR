@@ -12,8 +12,8 @@
       <div id="users">
         <% @results.each do |result| %>
           <p class="search-result">
-            <% if result.image.present? %>
-              <%= image_tag result.image, height: "30" %>
+            <% if result.image_url(:small_thumb).present? %>
+              <%= image_tag result.image_url(:small_thumb), height: "30" %>
             <% else %>
               <i class='wr-icon wr-icon-founder-av'></i>
             <% end %>
