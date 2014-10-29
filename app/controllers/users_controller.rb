@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     rescue
       ActiveRecord::RecordNotFound
-      flash[:error] = "That user does not exist"
+      flash[:danger] = "That user does not exist"
       redirect_to root_url
     end
   end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       user.update(email_digest: false)
       flash[:success] = "You have been unsubscribed"
     else
-      flash[:error] = "Invalid Link"
+      flash[:danger] = "Invalid Link"
     end
     redirect_to root_path
   end
@@ -55,12 +55,12 @@ class UsersController < ApplicationController
   def claim
     @user = User.find(params[:id])
     if @user.email.nil?
-      flash[:error] = "You already have a profile."
+      flash[:danger] = "You already have a profile."
     else
       if @user.update!(claimed: true)
         flash[:success] = "You have been successfully claimed this profile"
       else
-        flash[:error] = "The profile could not be claimed"
+        flash[:danger] = "The profile could not be claimed"
       end
     end
     session[:claimed_user_id] = nil
@@ -70,12 +70,13 @@ class UsersController < ApplicationController
   def upload_image
     @user = User.find(params[:id])
     @user.image = params[:image]
-    if @user.save!
+    if params[:image] && @user.save!
       flash[:success] = "Your image was successfully saved!"
+      redirect_to @user
     else
-      flash[:error] = "We had a problem saving your image."
+      flash[:danger] = "We had a problem saving your image."
+      redirect_to edit_user_path @user
     end
-    redirect_to @user
   end
 
   private

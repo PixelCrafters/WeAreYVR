@@ -4,7 +4,7 @@ class AddressesController < ApplicationController
     if @address.update(address_params)
       flash[:success] = "The address was updated successfully"
     else
-      flash[:error] = "There was a problem updating your address"
+      flash[:danger] = "There was a problem updating your address"
     end
     redirect_to edit_organization_path(@address.organization)
   end
@@ -14,7 +14,7 @@ class AddressesController < ApplicationController
     if @address.save!
       flash[:success] = "The address was added successfully"
     else
-      flash[:error] = "There was a problem adding your address"
+      flash[:danger] = "There was a problem adding your address"
     end
     redirect_to edit_organization_path(@address.organization)
   end

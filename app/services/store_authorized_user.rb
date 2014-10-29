@@ -16,11 +16,11 @@ class StoreAuthorizedUser
     user = ""
     if claimed_user.present?
       user = User.find(claimed_user)
-      user.assign_attributes attributes
+      user.assign_attributes(attributes)
       user.remote_image_url = userinfo["info"]["image"]
     else
       user = User.new
-      user.assign_attributes attributes
+      user.assign_attributes(attributes)
       user.name = userinfo["info"]["name"]
       user.claimed = true
       user.remote_image_url = userinfo["info"]["image"]

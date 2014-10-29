@@ -19,7 +19,7 @@ class OrganizationsController < ApplicationController
     if @organization.persisted?
       flash[:success] = "The organization was added successfully"
     else
-      flash[:error] = "There was a problem adding your organization"
+      flash[:danger] = "There was a problem adding your organization"
     end
     redirect_to [:edit, @organization]
   end
@@ -43,7 +43,7 @@ class OrganizationsController < ApplicationController
     if @organization.save!
       flash[:success] = "Your image was successfully saved!"
     else
-      flash[:error] = "We had a problem saving your image."
+      flash[:danger] = "We had a problem saving your image."
     end
     redirect_to @organization
   end
@@ -57,7 +57,7 @@ class OrganizationsController < ApplicationController
     if @organization.update!(organization_params)
       flash[:success] = "The organization was updated successfully"
     else
-      flash[:error] = "There was a problem updating your organization"
+      flash[:danger] = "There was a problem updating your organization"
     end
     redirect_to edit_organization_path(@organization)
   end

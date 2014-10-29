@@ -9,7 +9,7 @@ class RolesController < ApplicationController
       @users = @role.users
     rescue
       ActiveRecord::RecordNotFound
-      flash[:error] = "That role does not exist"
+      flash[:danger] = "That role does not exist"
       redirect_to root_url
     end
   end
