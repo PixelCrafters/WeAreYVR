@@ -17,10 +17,9 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new job_params
-
     if @job.save
-      flash[:success] = "Job was successfully created."
-      redirect_to edit_job_url @job
+      flash[:success] = "Thanks! We have received your job posting. We'll review it and publish as soon as possible."
+      redirect_to jobs_url
     else
       render :new
     end
