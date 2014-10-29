@@ -54,7 +54,9 @@
 
   index do
     selectable_column
-    column :name, :min_width => "100px"
+    column :name, :min_width => "100px" do |organization|
+      link_to organization.name, organization_path(organization), target: '_blank'
+    end
     column "Headline", :min_width => "250px" do |organization|
           truncate(organization.headline, omision: "…", length: 100)
         end
@@ -141,6 +143,7 @@
     f.inputs "Add/Edit Organization" do
       f.input :name
       f.input :headline
+      f.input :image
       f.input :description
       f.input :types
       f.input :active

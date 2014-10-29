@@ -40,7 +40,7 @@ ActiveAdmin.register User do
   index do
     selectable_column
     column "Name" do |user|
-      link_to user.name, admin_user_path(user.id)  
+      link_to user.name, user_path(user), target: '_blank'
     end
     column "Tags" do |user|
       raw(user.tags.order('name ASC').map{ |tag| tag.name }.join(", "))
