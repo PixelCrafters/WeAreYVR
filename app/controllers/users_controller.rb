@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :check_session, only: [:edit, :update, :toggle_email_digest_subscription]
+  before_filter :check_session, only: [:edit, :update, :toggle_email_digest_subscription, :upload_image]
   before_filter :sign_in_before_claim, only: [:claim]
 
   def index

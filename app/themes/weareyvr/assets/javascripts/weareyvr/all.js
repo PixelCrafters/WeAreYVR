@@ -10,3 +10,8 @@
 
 
 //= require bootstrap
+
+$('.js-choose-file').click(function() {
+  $(this).siblings('input[type="file"]').click();
+  return false;
+});

@@ -40,12 +40,13 @@ class OrganizationsController < ApplicationController
 
   def upload_image
     @organization.image = params[:image]
-    if @organization.save!
+    if params[:image] && @organization.save!
       flash[:success] = "Your image was successfully saved!"
+      redirect_to @organization
     else
       flash[:danger] = "We had a problem saving your image."
+      redirect_to edit_organization_path @organization
     end
-    redirect_to @organization
   end
 
   def edit

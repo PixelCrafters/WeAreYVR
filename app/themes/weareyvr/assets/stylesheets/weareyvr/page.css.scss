@@ -63,6 +63,14 @@ div.submit{
   }
 }
 
+.file-upload {
+  .btn { margin-top: 10px; }
+  input[type='file'] {
+    position: absolute;
+    left: -9999px;
+  }
+}
+
 /*** Organization Styles ***/
 
 .alert.claim-header{
