@@ -56,10 +56,12 @@
     <div class="col-xs-12">
       <h3>Sponsored by</h3>
       <% @jobs.sponsored.each do |sponsored_job| %>
-        <% if sponsored_job.organization.image.present? %>
-          <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
-        <% else %>
-          <%= sponsored_job.organization.name %>
+        <%= link_to organization_path(sponsored_job.organization) do %>
+          <% if sponsored_job.organization.image.present? %>
+            <%= image_tag sponsored_job.organization.image, size: "64x64", alt: sponsored_job.organization.name %>
+          <% else %>
+            <%= sponsored_job.organization.name %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
