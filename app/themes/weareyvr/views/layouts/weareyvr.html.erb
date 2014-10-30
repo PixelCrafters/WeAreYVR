@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= yield(:title) %>WeAreYVR</title>
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    "weareyvr/all", media: "all" %>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://cdn.auth0.com/w2/auth0-widget-3.0.min.js"></script>
@@ -14,7 +14,7 @@
       <nav class="navbar navbar-default wr-navbar">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navigation">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -26,7 +26,7 @@
                </div>
             </a>
           </div>
-          <nav class="collapse navbar-collapse" role="navigation">
+          <nav id="primary-navigation" class="collapse navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
               <li<%= current_page?(search_organizations_path) ? ' class=active' : '' %>><%= link_to "Organizations",  search_organizations_path %></li>
               <li<%= current_page?(search_users_path) ? ' class=active' : '' %>><%= link_to "People", search_users_path %></li>
@@ -76,9 +76,7 @@
         <div class="row">
           <%= render "shared/flash_message" %>
         </div>
-        <div class="row">
-          <%= yield %>
-        </div>
+        <%= yield %>
       </div><!-- /.container -->
 
     </div>
