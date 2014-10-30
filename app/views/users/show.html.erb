@@ -7,6 +7,17 @@
   </div>
 
   <div class="col-sm-8 profile__content">
+    <% if current_user == @user && @user.email.nil? %>
+    <div class="alert alert-info">
+      <p style="margin-bottom: 10px">We noticed we don't have your email address. Add it here to receive WeAreYVR updates. No spam, no way.</p>
+      <%= form_for current_user, html: { role: "form", class: 'form-inline' } do |f| %>
+        <div class="form-group">
+            <%= f.text_field :email, class: "form-control" %>
+        </div>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <% end %>
     <%= render "users/edit_mode" %>
     <%= render "users/bio" %>
     <%= render "users/skills" %>

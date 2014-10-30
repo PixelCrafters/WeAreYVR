@@ -1,9 +1,6 @@
 <% if @user.organizations.any? || user_is_current_user? %>
   <section class="profile__organizations">
     <h2>Organizations</h2>
-    <% if user_is_current_user? %>
-              <span class="pull-right"><%= link_to "Create New Organization", new_organization_path, class: "right" %></span>
-            <% end %>
     <ul class="list-unstyled">
       <% @user.organizations.each do |organization| %>
         <li>
@@ -36,6 +33,9 @@
         </li>
       <% end %>
     </ul>
+    <% if user_is_current_user? %>
+      <%= link_to "Create New Organization", new_organization_path, class: "btn btn-default" %>
+    <% end %>
   </section>
 <% end %>
 

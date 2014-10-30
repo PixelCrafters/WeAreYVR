@@ -2,11 +2,9 @@
   <div class="col-sm-12">
     <% if user_is_current_user? %>
       <% if current_page?(edit_user_path(current_user)) %>
-        <%= link_to '<span class="glyphicon glyphicon-remove-circle large-icon"></span>
-      '.html_safe, user_path(current_user), class: "edit pull-right" %>
+        <%= link_to '<span class="glyphicon glyphicon-remove-circle large-icon"></span>'.html_safe, user_path(current_user), class: "edit pull-right" %>
       <% else %>
-        <%= link_to '<span class="glyphicon glyphicon-edit large-icon"></span>
-      '.html_safe, edit_user_path(current_user), class: "edit pull-right" %>
+        <%= link_to '<span class="glyphicon glyphicon-edit large-icon"></span>'.html_safe, edit_user_path(current_user), class: "edit pull-right" %>
       <% end %>
     <% end %>
   </div>

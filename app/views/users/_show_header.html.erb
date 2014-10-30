@@ -14,10 +14,4 @@
   <p class="profile__tagline"><%= @user.short_bio %></p>
 
   <%= render "users/show_profile_links" %>
-
-  <div class="user_details">
-      <% if @user.email.nil? %>
-        <%= render "users/email_modal" %>
-      <% end %>
-    </div>
 </section>

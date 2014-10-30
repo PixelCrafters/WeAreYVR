@@ -1,7 +1,9 @@
 <%= form_for @organization, html: { role: "form" } do |f| %>
   <div class="form-group">
-    <%= f.label :hiring %>
-    <%= f.check_box :hiring, class: "form-control" %>
+    <%= f.label "Hiring" %>
+    <div class="checkbox">
+      <label><%= f.check_box :hiring %> Show that we're hiring?</label>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :hiring_roles %>
