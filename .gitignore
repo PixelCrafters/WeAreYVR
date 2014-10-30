@@ -21,3 +21,4 @@ config/database.yml
 .env
 
 .ruby-version
+public/uploads
