@@ -1,6 +1,6 @@
 <% content_for :title, "Jobs - " %>
 <%= render "jobs/header" %>
-<%= render "jobs/sponsored_jobs" %>
+<%= render "jobs/sponsored_jobs" if params[:page].blank? %>
 <% @results = @jobs.nonsponsored.published.last_month.page params[:page] %>
 <%= render "jobs/nonsponsored_jobs" %>
 <%= render "jobs/weareyvr_sponsors" %>
