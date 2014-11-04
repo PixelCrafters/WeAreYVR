@@ -2,7 +2,7 @@ ActiveAdmin.register Job do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :title, :description, :level, :job_type, :source, :link, :organization_id, :sponsored, :published
+  permit_params :title, :description, :level, :job_type, :source, :link, :organization_id, :sponsored, :published, :want_junior, :want_intermediate, :want_senior, :want_executive
   #
   # or
   #
