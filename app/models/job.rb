@@ -13,11 +13,13 @@ class Job < ActiveRecord::Base
   acts_as_paranoid
   
   belongs_to :organization
+
   def search_data
     {
       title: title,
       updated_at: updated_at,
       description: description,
+      organization: organization.name,
       job_type: job_type,
       level: levels_wanted
     }
