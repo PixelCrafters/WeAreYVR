@@ -19,7 +19,7 @@ class Job < ActiveRecord::Base
       title: title,
       updated_at: updated_at,
       description: description,
-      organization: organization.name,
+      organization: organization ? organization.name : nil,
       job_type: job_type,
       level: levels_wanted
     }
